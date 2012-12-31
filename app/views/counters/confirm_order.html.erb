@@ -1,0 +1,7 @@
+
+<%= form_for :card, {:url=>"/swipe_cards/verify"} do |f| %>
+<%=hidden_field_tag "card[total]",@total%>
+  <%= f.label :swipe_card, "Swipe Card"%>
+  <%= f.text_field :card_no %></br>
+  <%= f.submit %>
+<% end %>

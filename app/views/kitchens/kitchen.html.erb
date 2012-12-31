@@ -1,0 +1,23 @@
+<div id="myDiv">
+  <div class="page-header"style="background-color:#999999;">
+    <h1 style="text-align:left;">Counter</h1>
+  </div>
+
+  <div style="width: 600px;height:800px; background-color:white;margin-bottom: 50px;float: left;margin-left: 30px;overflow: scroll;">
+    <table class="table table-bordered">
+      <tr style="background-color:blanchedalmond; ">
+        
+      <div>
+        <%= form_tag '/kitchens/show ' %>
+        
+        <%= select :counter, :counter_id, Counter.all.collect {|c| [c.name, c.id]}, { :prompt => 'Select kitchen' }%>
+        <%= submit_tag "Go!" %>
+      </div>
+               
+      </tr>
+    </table>
+  </div>
+  </div>
+
+
+

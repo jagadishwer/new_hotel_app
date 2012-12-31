@@ -1,0 +1,2 @@
+module SwipeCardsHelper
+end

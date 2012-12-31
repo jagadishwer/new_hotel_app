@@ -1,0 +1,166 @@
+<script>
+  function loadXMLDoc()
+  {
+
+//alert('ok');
+    var xmlhttp;
+    if (window.XMLHttpRequest)
+    {// code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {// code for IE6, IE5
+      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      {
+        document.getElementById("myDiv1").innerHTML=xmlhttp.responseText;
+      }
+    }
+//alert('ok');
+    xmlhttp.open("GET","/counters/final_order",true);
+    xmlhttp.send();
+
+  }
+   function cancel(id)
+  {
+
+//alert('ok');
+    var xmlhttp;
+    if (window.XMLHttpRequest)
+    {// code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {// code for IE6, IE5
+      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      {
+        document.getElementById("myDiv1").innerHTML=xmlhttp.responseText;
+      }
+    }
+//alert('ok');
+    xmlhttp.open("GET","/orderlists/cancel?id="+id,true);
+    xmlhttp.send();
+
+  }
+ function add_item(id,price)
+  {
+if ($('#quantity').val()==''){
+  quantity=1;
+}else{
+quantity=$('#quantity').val();
+}
+    var xmlhttp;
+    if (window.XMLHttpRequest)
+    {// code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {// code for IE6, IE5
+      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      {
+        document.getElementById("myDiv1").innerHTML=xmlhttp.responseText;
+      }
+    }
+//alert('ok');
+    xmlhttp.open("GET","/orderlists/create?id="+id+"&price="+price+"&quantity="+quantity,true);
+    xmlhttp.send();
+
+  }
+ /* function add_item1(id,price)
+  {
+
+  
+    //alert(order);
+
+    $.ajax({
+      type: "GET",
+      url: "/orderlists/create",
+
+      data: {
+        'id' : id,
+        'price': price
+      }
+
+    });
+    //alert("ok");
+loadXMLDoc();
+  }*/
+ 
+
+</script>
+
+
+
+
+
+
+
+<style>
+  .main_div{
+  color: white;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #5bb65b;
+  background-image: -moz-linear-gradient(top, #62c462, #51a351);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#62c462), to(#51a351));
+  background-image: -webkit-linear-gradient(top, #62c462, #51a351);
+  background-image: -o-linear-gradient(top, #62c462, #51a351);
+  background-image: linear-gradient(to bottom, #62c462, #51a351);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff62c462', endColorstr='#ff51a351', GradientType=0);
+  /*border-color: #51a351 #51a351 #387038;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) fadein(rgba(0, 0, 0, 0.1), 15%);
+  *background-color: #51a351;
+   Darken IE7 buttons by default so they stand out more given they won't have borders */
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+  }
+  #quantity{
+    width:50px;
+    height:50px;
+}
+</style>
+
+<div id="myDiv" style="width:100%;">
+<div>
+  <h2><%= @counter.name %> Items</h2>
+</div>
+<div class ="main_div"style="width: 60%;height:800px;margin-bottom: 0px;float: left;margin-left: 30px;overflow: scroll;border:1px solid black;padding: 25px;">
+  <div style="margin-left:80%;"> <span style="width:50px;">Quantity</span> <%=text_field_tag "quantity",'1'%></div>
+  <div class="row-fluid" style="margin-left:0px;">
+<% @items.each do |i| %>
+   <div class="span3">
+     <button type="button"  class="thumbnail" style='height:180px;width:180px;line-height: 50px;'onclick="add_item(<%=i.id%>,<%=i.price%>)"><%=image_tag i.attachments.shuffle.first.image_url,:size=>'180x180'%></button>
+
+
+
+     <p><%=  i.item_name %></p></div>
+
+
+<% end %>
+  </div>
+</div>
+<div id="myDiv1" style="width:30%;height:400px; background-color:white;margin-bottom: 0px;float: left;margin-left: 0px;overflow: scroll;">
+
+
+</div>
+  <div style="width: 30%;margin-bottom: 0px;float: left;margin-left: 0px;">
+
+   <%=link_to_modal "Confirm Order", {:controller=>'counters',:action=>'confirm_order',:total=>@sum},:class=>'thumbnail btn btn-success', :style=>'height: 50px;
+line-height: 50px;'%>
+  <%=link_to "Cancel Order", "/orders/cancel_order",:class=>'thumbnail btn btn-danger', :confirm => "Are you sure?, the action cannot be undone!", :style=>'height: 50px;
+line-height: 50px;'%>
+    <%=link_to_modal "adjust", '#',:class=>'thumbnail btn btn-success', :style=>'height: 50px;line-height: 50px;'%>
+  <%#=link_to "print", {:action=>'receipt',:id=>customer.id}, :class=>"btn btn-warning" %>
+</div>
+
+</div>

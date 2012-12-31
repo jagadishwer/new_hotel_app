@@ -1,0 +1,18 @@
+<table class="table table-bordered">
+        <tr style="background-color:#ffcccc; ">
+          <td>Item</td><td>Quantity </td><td>Unit Price</td><td>Total Price</td><td></td>
+        </tr>
+        <%@sum=0%>
+        <%if !@order_lists.empty?%>
+        <%@order_lists.each do |ol|%>
+        <tr>
+          <td><%=ol.itemname%></td><td><%=ol.quantity%></td><td><%=ol.price%></td><td><%@sum+=ol.quantity*ol.price%><%=ol.quantity*ol.price%></td><td>
+ <button type="button" class="btn-mini btn-danger" onclick="cancel(<%=ol.id%>)" confirm = "Are you sure?, the action cannot be undone!">delete</button>
+
+    <%#=link_to "delete",{:controller=>"orderlists",:action=>'cancel',:id=>ol.id} %></td>
+        </tr>
+        <%end%>
+        <%end%>
+        <tr style="background-color:#cccccc; "><td></td><td>TOTAL</td><td></td><td><%=@sum%></td><td></td>
+        </tr>
+      </table>

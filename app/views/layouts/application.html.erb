@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HotelApp</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+   <%= javascript_include_tag :defaults, "nested_form" %>
+  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag  "jquery" %>
+  <%= javascript_include_tag  "jquery.ui.all" %>
+  <%= javascript_include_tag  "jquery.modal" %>
+  
+  <%= javascript_include_tag  "jquery_ujs" %>
+  <%= javascript_include_tag  "jquery_nested_form" %>
+
+  <%= csrf_meta_tags %>
+
+</head>
+<style>
+  .btn-large{
+    height:30px;
+}
+  </style>
+<body >
+  <p class="notice"><%= notice %></p>
+       <p><%= alert %></p>
+
+
+       <div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2" style="background-color: rgb(252, 248, 227);height:920px;border:1px solid;">
+      <!--Sidebar content-->
+      <%if user_signed_in?%>
+
+  <ul class="nav nav-pills nav-stacked" style="margin-top:80px;padding:10px">
+    <li><%=link_to "Dashboard",'/hotelsessions/dashboard',:class=>"btn-large btn-warning"%></li>
+<%#=link_to "Add Tables", {:controller=>'tables',:action=>'new'},:class=>'btn btn-warning'%>
+ <li><%=link_to_modal "Tables", '/tables/new',:class=>'btn-large btn-info'%></li>
+<li><%=link_to "Tax", '/taxes/show',:class=>'btn-large btn-success'%></li>
+
+   <li><%=link_to "Categories",'/categories/show',:class=>'btn-large btn-success'%>
+   <%#=link_to "Counter",'/counters/show',:class=>"btn-large btn-info"%>
+   <li>
+  <%=link_to "Main Counter",'/counters/main_counter',:class=>"btn-small btn-info" %>
+  <%=link_to "Other Counter",'/counters/other_counter',:class=>"btn-small btn-info" %>
+   </li>
+   <li><%=link_to "Items",'/items/show',:class=>'btn-large btn-info'%></li>
+ <%#=link_to "Add Tax", {:controller=>'tables',:action=>'new'},:class=>'btn btn-warning'%>
+
+    <li><%=link_to "Kitchen",'/hotelsessions/show',:class=>"btn-large btn-success"%></li>
+    <li><%=link_to "Billing",'/hotelsessions/billing',:class=>"btn-large btn-info"%></li>
+    <li><%=link_to "Day Report",'/hotelsessions/day_report',:class=>"btn-large btn-success"%></li>
+<li><%=link_to "Inventory",'/hotelsessions/inventory',:class=>"btn-large btn-info"%></li>
+
+ 
+<li><%=link_to "Setting",edit_user_registration_path ,:class=>"btn-large btn-primary"%></li>
+<li><%=link_to "Gallery",'/galleries/show',:class=>"btn-large btn-info"%></li>
+<li><%=link_to "About us",'/abouts/show',:class=>"btn-large btn-success"%></li>
+<li><%=link_to "Contact us",'/contacts/show',:class=>"btn-large btn-info"%></li>
+
+
+<li> <%= link_to "Sign out", destroy_user_session_path, :method => :delete,:class=>"btn-large btn-danger" %></li>
+<li>&nbsp;</li>
+<li><%#= link_to "API Description", '/pages/api', :class => "btn-large btn-primary" %></li>
+
+     </ul>
+       <%end%>
+    </div>
+    <div class="span10" style="background-color: rgb(252, 248, 227);height:920px;border:1px solid;">
+      <!--Body content-->
+      <%= yield %>
+    </div>
+  </div>
+</div>
+       <%# if user_signed_in? %>
+            <%#*<td><%= link_to "Sign out", destroy_user_session_path, :method => :delete % </td>%>
+           <%#end%>
+       
+
+
+</body>
+</html>
