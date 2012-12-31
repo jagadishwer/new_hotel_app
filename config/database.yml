@@ -15,7 +15,7 @@ development:
   database: new_hotel_app_development
   pool: 5
   username: root
-  password: tiger
+  password:
   
 
 # Warning: The database defined as "test" will be erased and
@@ -28,7 +28,7 @@ test:
   database: new_hotel_app_test
   pool: 5
   username: root
-  password: tiger
+  password: 
 
 
 production:
@@ -38,4 +38,4 @@ production:
   database: new_hotel_app_development
   pool: 5
   username: root
-  password: tiger
+  password: 

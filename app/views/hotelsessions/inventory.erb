@@ -11,11 +11,11 @@
 </style>
 <%@a=[];@l=[];@r=[]%>
 <%@a<<0;@l<<0;@r<<0%>
-<div id="myDiv"style="width:1200px;height:600px;float: left;margin-left:30px;">
+<div id="myDiv"style="width:950px;height:600px;float: left;margin-left:30px;">
 
   <%=form_for :sorting, :url=>"inventory" do%>
     START DATE <%=date_select 'sorting[start_date]' ,"dob",:use_month_numbers => true,:order => [:day, :month, :year],:prompt => { :day => 'dd', :month => 'mm', :year => 'yyyy' },:start_year => 2000,:end_year=>(Date.today).year%>
-    END DATE <%=date_select 'sorting[end_date]' ,"dob",:use_month_numbers => true,:order => [:day, :month, :year],:prompt => { :day => 'dd', :month => 'mm', :year => 'yyyy' },:start_year => 2000,:end_year=>(Date.today).year%>
+    END DATE <%=date_select 'sorting[end_date]' ,"dob",:use_month_numbers => true,:order => [:day, :month, :year],:prompt => { :day => 'dd', :month => 'mm', :year => 'yyyy' },:start_year => 2000,:end_year=>(Date.today).year+1%>
     <%=submit_tag "ok",:class=>'btn-small btn-info'%>
 
   <%end%>
@@ -24,7 +24,7 @@
 
 
 
-    <div style="width:1100px;height:500px;background-color:white; margin-left:30px;border:3px solid black; overflow:scroll;">
+    <div style="width:950px;height:500px;background-color:white; margin-left:30px;border:3px solid black; overflow:scroll;">
       <table class="table table-hover "style="border:1px solid rgb(221,221,221)">
         <tr style="background-color:#ffcccc"><td></td><%(1..@stcs_size-1).each do |x|%>
             <td><%=@stcs[x].created_at.to_date%></td>
@@ -90,7 +90,7 @@
     </table>
 
   </div>
-  <div style="width:1100px;height:200px;background-color:white;margin-left:30px;margin-top: 20px;border:3px solid black; overflow:scroll;">
+  <div style="width:950px;height:200px;background-color:white;margin-left:30px;margin-top: 20px;border:3px solid black; overflow:scroll;">
 
     <%h=@a.max%>
     <center><%=image_tag Gchart.line(:title => 'sales',:bar_colors => 'FF0000,00FF00',:size=>'1000x200',

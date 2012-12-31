@@ -1,7 +1,8 @@
 
-<%= form_for :card, {:url=>"/swipe_cards/verify"} do |f| %>
-<%=hidden_field_tag "card[total]",@total%>
-  <%= f.label :swipe_card, "Swipe Card"%>
-  <%= f.text_field :card_no %></br>
-  <%= f.submit %>
-<% end %>
+<%#= form_for :card, {:url=>"/orders/create  "} do |f| %>
+<%=hidden_field_tag "sum",@total%>
+  SWIPE CARD NUMBER:<%=text_field_tag "card_no"%>
+  <button type="button"  class="btn" onClick="confirmation()">Ok</button>
+
+  <%#= f.submit %>
+<% #end %>

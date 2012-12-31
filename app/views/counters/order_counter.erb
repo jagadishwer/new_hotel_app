@@ -1,7 +1,97 @@
 <script>
+$(document).ready(function(){
+  $('#back').hide();
+  $('#cancel').click(function(e) {
+    
+    if(confirm("Are you sure?, the action cannot be undone!")){
+      var xmlhttp;
+    if (window.XMLHttpRequest)
+    {// code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {// code for IE6, IE5
+      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      {
+        document.getElementById("myDiv1").innerHTML=xmlhttp.responseText;
+      }
+    }
+//alert('ok');
+    xmlhttp.open("GET","/orders/cancel_order",true);
+    xmlhttp.send();
+    }
+    else{
+      alert("cancel");
+    }
+    
+});
+
+$('#swipe').click(function(e) {
+$('#back').show();
+var sum = $('#sum').val();
+      var xmlhttp;
+    if (window.XMLHttpRequest)
+    {// code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {// code for IE6, IE5
+      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      {
+        document.getElementById("myDiv1").innerHTML=xmlhttp.responseText;
+      }
+    }
+//alert('ok');
+    xmlhttp.open("GET","/counters/confirm_order?total="+sum,true);
+    xmlhttp.send();
+
+
+
+});
+
+
+ /*$('#confirm').click(function(e) {
+   alert("ok");
+      sum = $('#sum').val();
+       card_no= $('#card_no').val();
+      var xmlhttp;
+    if (window.XMLHttpRequest)
+    {// code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {// code for IE6, IE5
+      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      {
+        document.getElementById("myDiv1").innerHTML=xmlhttp.responseText;
+      }
+    }
+//alert('ok');
+    xmlhttp.open("GET","/counters/create?total="+sum+"&card_no="+card_no,true);
+    xmlhttp.send();
+
+
+
+});*/
+
+
+
+});
   function loadXMLDoc()
   {
-
+$('#back').hide();
 //alert('ok');
     var xmlhttp;
     if (window.XMLHttpRequest)
@@ -51,11 +141,14 @@
   }
  function add_item(id,price)
   {
+
+  alert("ok");
 if ($('#quantity').val()==''){
   quantity=1;
 }else{
 quantity=$('#quantity').val();
 }
+alert(quantity);
     var xmlhttp;
     if (window.XMLHttpRequest)
     {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -72,11 +165,41 @@ quantity=$('#quantity').val();
         document.getElementById("myDiv1").innerHTML=xmlhttp.responseText;
       }
     }
-//alert('ok');
+alert('ok');
     xmlhttp.open("GET","/orderlists/create?id="+id+"&price="+price+"&quantity="+quantity,true);
     xmlhttp.send();
 
   }
+
+  function confirmation(sum)
+  {
+
+    
+      sum = $('#sum').val();
+       card_no = $('#card_no').val();
+      
+      var xmlhttp;
+    if (window.XMLHttpRequest)
+    {// code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {// code for IE6, IE5
+      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      {
+        document.getElementById("myDiv1").innerHTML=xmlhttp.responseText;
+      }
+    }
+//alert('ok');
+    xmlhttp.open("GET","/orders/create?total="+sum+"&card_no="+card_no,true);
+    xmlhttp.send();
+
+  }
+
  /* function add_item1(id,price)
   {
 
@@ -154,10 +277,15 @@ loadXMLDoc();
 
 </div>
   <div style="width: 30%;margin-bottom: 0px;float: left;margin-left: 0px;">
+    <div id="swipcard" style='height: 50px;
+line-height: 50px;'>
+      <button type="button"  id="back" class="btn" onclick="loadXMLDoc()">back</button>
+    </div>
 
-   <%=link_to_modal "Confirm Order", {:controller=>'counters',:action=>'confirm_order',:total=>@sum},:class=>'thumbnail btn btn-success', :style=>'height: 50px;
+
+   <%=link_to "Confirm Order", '#',:id=>'swipe',:class=>'thumbnail btn btn-success', :style=>'height: 50px;
 line-height: 50px;'%>
-  <%=link_to "Cancel Order", "/orders/cancel_order",:class=>'thumbnail btn btn-danger', :confirm => "Are you sure?, the action cannot be undone!", :style=>'height: 50px;
+  <%=link_to "Cancel Order", "#",:id=>'cancel',:class=>'thumbnail btn btn-danger', :style=>'height: 50px;
 line-height: 50px;'%>
     <%=link_to_modal "adjust", '#',:class=>'thumbnail btn btn-success', :style=>'height: 50px;line-height: 50px;'%>
   <%#=link_to "print", {:action=>'receipt',:id=>customer.id}, :class=>"btn btn-warning" %>

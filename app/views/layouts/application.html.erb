@@ -48,7 +48,7 @@
  <%#=link_to "Add Tax", {:controller=>'tables',:action=>'new'},:class=>'btn btn-warning'%>
 
     <li><%=link_to "Kitchen",'/hotelsessions/show',:class=>"btn-large btn-success"%></li>
-    <li><%=link_to "Billing",'/hotelsessions/billing',:class=>"btn-large btn-info"%></li>
+    <li><%#=link_to "Billing",'/hotelsessions/billing',:class=>"btn-large btn-info"%></li>
     <li><%=link_to "Day Report",'/hotelsessions/day_report',:class=>"btn-large btn-success"%></li>
 <li><%=link_to "Inventory",'/hotelsessions/inventory',:class=>"btn-large btn-info"%></li>
 
@@ -70,7 +70,7 @@
       <!--Body content-->
       <%= yield %>
     </div>
-    <%= debug params if Rails.env.development? %>
+    <%#= debug params if Rails.env.development? %>
   </div>
 </div>
        <%# if user_signed_in? %>

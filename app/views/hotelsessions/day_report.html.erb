@@ -10,7 +10,7 @@
 
 
 
-    <div style="width:1100px;height:500px;background-color:white; margin-left:30px;border:3px solid black; overflow:scroll;">
+    <div style="width:950px;height:500px;background-color:white; margin-left:30px;border:3px solid black; overflow:scroll;">
       <table class="table table-hover "style="border:1px solid rgb(221,221,221)">
         <tr style="background-color:#ffcccc"><td></td>
           <td><%=Date.today%></td><td></td>
@@ -54,7 +54,7 @@
         </tr>
         <%@customers.each do |customer|%>
 
-        <tr style="background-color:whitesmoke; "><td><%=customer.serial_no%></td><td><%=customer.table.table_name%></td><td><%=customer.date_of_transcation%></td><td><%=customer.total%></td>
+        <tr style="background-color:whitesmoke; "><td><%=customer.serial_no%></td><td><%=customer.counter.name%></td><td><%=customer.date_of_transcation%></td><td><%=customer.total%></td>
           <%#*<td> <button type="button" class="btn-small btn-info" onclick="view(<%=order.id%)">view</button></td>%>
         </tr>
 

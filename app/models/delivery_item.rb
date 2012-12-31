@@ -13,7 +13,7 @@
 
 class DeliveryItem < ActiveRecord::Base
   # attr_accessible :title, :body
-  attr_accessible :stock_list_item
+  attr_accessible :stock_list_item,:stock_list_item_id, :mrp, :quantity
   #attr_accessor :item_name
   belongs_to :delivery
   belongs_to :stock_list_item

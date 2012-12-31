@@ -318,13 +318,13 @@ authorize! :billing, [@orders, @customers]
       @sd=Date.parse( params[:sorting][:start_date].to_a.sort.collect{|c| c[1]}.join("-") )
       @ed=Date.parse( params[:sorting][:end_date].to_a.sort.collect{|c| c[1]}.join("-") )
       #@sorted_customers=Customer.find(:all,:order=>'updated_at DESC',:conditions=>{:status=>2,:date_of_transcation=>[@sd..@ed]})
-      @stcs=StockCount.find(:all,:conditions=>{:created_at=>[@sd..@ed]})
-      puts "------"
+      @stcs=StockCount.find(:all,:conditions=>{:created_at=>(@sd..@ed)})
+      puts "----1--"
       puts @stcs.inspect
-       puts "------"
+       puts "----1--"
        if !@stcs.empty?
-      last=StockCount.find(:last,:conditions=>['created_at < ?',@sd])
-      
+      last=StockCount.find(:last,:conditions=>['created_at <?',@sd])
+      puts"--------2-----"
       puts last
       if last.nil?
       last=Delivery.find(:first)
@@ -333,7 +333,7 @@ authorize! :billing, [@orders, @customers]
         @cost_brought_forward=last.cost
       end
       puts last
-      puts"-------------"
+      puts"--------2-----"
       @stcs.unshift(last) 
       @stcs_size=@stcs.size
       @stlis=StockListItem.all

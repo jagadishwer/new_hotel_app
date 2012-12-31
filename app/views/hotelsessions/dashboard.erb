@@ -96,14 +96,14 @@ background-color: white;
  <%=link_to "save as PDF",{:action=>'sales',:format=>'pdf',:end_date=>@ed,:start_date=>@sd},:target=>'_blank',:class=>'btn btn-success'%><br/><br/>
 
     <table class="table table-bordered">
-        <tr style="background-color:#ffcccc; "> <td>SERIAL NO:</td> <td >TABLE NO: </td><td>TIME</td><td>TOTAL</td>
+        <tr style="background-color:#ffcccc; "> <td>SERIAL NO:</td> <td >COUNTER: </td><td>TIME</td><td>TOTAL</td>
           <%#*<td></td>%>
 
         </tr>
 
         <%@sorted_customers.each do |customer|%>
 
-        <tr style="background-color:whitesmoke; "><td><%=customer.serial_no%></td><td><%=customer.table.table_name%></td><td><%=customer.date_of_transcation%></td><td><%=customer.total%></td>
+        <tr style="background-color:whitesmoke; "><td><%=customer.serial_no%></td><td><%=customer.counter.name%></td><td><%=customer.date_of_transcation%></td><td><%=customer.total%></td>
           <%#*<td> <button type="button" class="btn-small btn-info" onclick="view(<%=order.id%)">view</button></td>%>
         </tr>
 
