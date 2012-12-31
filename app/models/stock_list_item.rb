@@ -9,7 +9,7 @@
 #
 
 class StockListItem < ActiveRecord::Base
-  # attr_accessible :title, :body
+ attr_accessible :name
  #
  #attr_accessible :delivery_items_attributes
   has_many :stock_counts, :through=>:remaining_items
