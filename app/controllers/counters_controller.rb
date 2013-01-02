@@ -41,8 +41,8 @@ class CountersController < ApplicationController
       @counter=Counter.find_by_id(session[:counter])
     end
     @items = @counter.items
-  
-render 'order_counter'
+    
+    render 'order_counter'
   end
   def final_order
     #render :text=>"ok"

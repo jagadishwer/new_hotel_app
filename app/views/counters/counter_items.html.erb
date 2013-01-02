@@ -20,9 +20,10 @@
 </style>
 
 <div id="myDiv" style="width:100%;">
-<div>
-  <h2><%= @counter.name %> Items</h2>
-</div>
+<%#*<div>%>
+  <%#*<h2><%= @counter.name %> Itemssssssssssss/h2>%>
+<%#*</div>%>
+  
 <div class ="main_div"style="width: 60%;height:800px;margin-bottom: 0px;float: left;margin-left: 30px;overflow: scroll;border:1px solid black;padding: 25px;">
   <div class="row-fluid" style="margin-left:0px;">
 <% @items.each do |i| %>
@@ -33,7 +34,9 @@ line-height: 50px;'%>
 
 <% end %>
   </div>
+
 </div>
+
 <div style="width:30%;height:400px; background-color:white;margin-bottom: 0px;float: left;margin-left: 0px;overflow: scroll;">
       <table class="table table-bordered">
         <tr style="background-color:#ffcccc; ">
@@ -52,6 +55,7 @@ line-height: 50px;'%>
       </table>
   
 </div>
+
   <div style="width: 30%;margin-bottom: 0px;float: left;margin-left: 0px;">
 
    <%=link_to_modal "Confirm Order", {:controller=>'counters',:action=>'confirm_order',:total=>@sum},:class=>'thumbnail btn btn-success', :style=>'height: 50px;

@@ -82,23 +82,28 @@
     
 }
 #myDiv{
-  width: 300px;
+    width: 300px;
     height: 375px;
     background-color:whitesmoke;
 }
 </style>
-<div>
+<div style="position:absolute;right:100px;float:right">
   CARD NUMBER:<%=text_field_tag "card_no"%> 
   <button type="button" class="btn-" onclick="loadXMLDoc()">Ok</button>
-
-<br/><br/><br/>
-<%=link_to_modal 'New Swipe Card', '/swipeCards/new', :class=>"btn-large btn-success"%>
-<%=link_to_modal 'Recharge', '/swipeCards/recharge', :class=>"btn-large btn-primary"%>
-<%=link_to_modal 'Refund', '/swipeCards/refund', :class=>"btn-large btn-warning"%>
 </div>
-<div id="myDiv1">
+<br/><br/><br/>
+<div style="position:absolute;left:50px;width:200px;">
+  <ul class="nav nav-pills nav-stacked" style="margin-top:10px;padding:10px">
+  <li><%=link_to_modal 'New Swipe Card', '/swipeCards/new', :class=>"btn-large btn-success"%></li>
+  <li><%=link_to_modal 'Recharge', '/swipeCards/recharge', :class=>"btn-large btn-primary"%></li>
+  <li><%=link_to_modal 'Refund', '/swipeCards/refund', :class=>"btn-large btn-warning"%></li>
+  </ul>
+</div>
+<div id="myDiv1" style ="position:absolute;right:150px; float:right;top:50px">
+  
   CARD DETAILS:
 <div id="myDiv">
+</div>
+</div>
+</div>
 
-</div>
-</div>

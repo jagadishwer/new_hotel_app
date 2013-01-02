@@ -30,7 +30,7 @@ class SwipeCardsController < ApplicationController
       @amount=@card.balance+params[:swipe_card][:balance].to_f
       @counter=Counter.find_by_name('main_counter')
       #render :text=>@amount
-      if  @card.update_attributes(:balance=>@amount)
+      if @card.update_attributes(:balance=>@amount)
         Transaction.create(:counter_id=>@counter,:cost=>params[:swipe_card][:balance].to_f,:swipe_card_id=>@card.id,:type_of_transaction=>1,:balance=>@card.balance)
         redirect_to :action=>'main_counter', :controller=>'counters'
        
