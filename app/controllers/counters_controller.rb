@@ -47,6 +47,7 @@ render 'order_counter'
   def final_order
     #render :text=>"ok"
      @order_lists=Orderlist.find(:all,:conditions=>{:counter_id=>session[:counter],:order_id=>nil})
+     @tax=Tax.sum(:percentage)/100
      render :layout => false
   end
   def confirm_order
