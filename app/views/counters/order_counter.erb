@@ -142,13 +142,13 @@ $('#back').hide();
  function add_item(id,price)
   {
 
-  alert("ok");
+  
 if ($('#quantity').val()==''){
   quantity=1;
 }else{
 quantity=$('#quantity').val();
 }
-alert(quantity);
+
     var xmlhttp;
     if (window.XMLHttpRequest)
     {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -165,7 +165,7 @@ alert(quantity);
         document.getElementById("myDiv1").innerHTML=xmlhttp.responseText;
       }
     }
-alert('ok');
+
     xmlhttp.open("GET","/orderlists/create?id="+id+"&price="+price+"&quantity="+quantity,true);
     xmlhttp.send();
 
