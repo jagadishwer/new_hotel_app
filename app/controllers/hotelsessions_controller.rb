@@ -315,10 +315,11 @@ authorize! :billing, [@orders, @customers]
     
     if params.key?(:sorting)
 
-
-      @sd=Date.parse( params[:sorting][:start_date].to_a.sort.collect{|c| c[1]}.join("-") )
-      @ed=Date.parse( params[:sorting][:end_date].to_a.sort.collect{|c| c[1]}.join("-") )
-      #@sorted_customers=Customer.find(:all,:order=>'updated_at DESC',:conditions=>{:status=>2,:date_of_transcation=>[@sd..@ed]})
+      @sd = Date.parse(params[:sorting][:start_date].split('-').reverse!.join('-'))
+      @ed = Date.parse(params[:sorting][:end_date].split('-').reverse!.join('-'))
+      #@sd=Date.parse( params[:sorting][:start_date].to_a.sort.collect{|c| c[1]}.join("-") )
+      #@ed=Date.parse( params[:sorting][:end_date].to_a.sort.collect{|c| c[1]}.join("-") )
+      @sorted_customers=Customer.find(:all,:order=>'updated_at DESC',:conditions=>{:status=>2,:date_of_transcation=>[@sd..@ed]})
       @stcs=StockCount.find(:all,:conditions=>{:created_at=>(@sd..@ed)})
       puts "----1--"
       puts @stcs.inspect
@@ -340,7 +341,7 @@ authorize! :billing, [@orders, @customers]
       @stlis=StockListItem.all
        end
     end
-    authorize! :inventory, @stlis
+    #authorize! :inventory, @stlis
   end
   def inventory_pdf
 
@@ -353,7 +354,7 @@ authorize! :billing, [@orders, @customers]
 
 
     end
-    authorize! :inventory, @stlis
+    #authorize! :inventory, @stlis
     render 'inventory_pdf'
   end
   def day_report

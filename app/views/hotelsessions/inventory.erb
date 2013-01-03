@@ -1,22 +1,44 @@
+<script>
+  $(function() {
+  $('.datepicker').datepicker();
+});
+
+</script>
 <style>
   select {
     width: 70px;
     border: 1px solid #CCC;
     background-color: white;
-
   }
   td{
     border:1px solid rgb(221,221,221)
   }
+  #my_button{
+  height: 100px;
+  width: 100px;
+}
 </style>
 <%@a=[];@l=[];@r=[]%>
 <%@a<<0;@l<<0;@r<<0%>
 <div id="myDiv"style="width:950px;height:600px;float: left;margin-left:30px;">
-
+<h3>Inventory</h3>
   <%=form_for :sorting, :url=>"inventory" do%>
-    START DATE <%=date_select 'sorting[start_date]' ,"dob",:use_month_numbers => true,:order => [:day, :month, :year],:prompt => { :day => 'dd', :month => 'mm', :year => 'yyyy' },:start_year => 2000,:end_year=>(Date.today).year%>
-    END DATE <%=date_select 'sorting[end_date]' ,"dob",:use_month_numbers => true,:order => [:day, :month, :year],:prompt => { :day => 'dd', :month => 'mm', :year => 'yyyy' },:start_year => 2000,:end_year=>(Date.today).year+1%>
-    <%=submit_tag "ok",:class=>'btn-small btn-info'%>
+  <div style ="position: absolute;width:350px;top: 80px;">
+
+      <%= label_tag  'start Date'%>
+      <%= text_field_tag 'sorting[start_date]',nil, :class => 'datepicker'%>
+
+
+      <%= label_tag 'end Date' %>
+      <%= text_field_tag 'sorting[end_date]',nil, :class => 'datepicker'%>
+
+  </div>
+ <div style ="position: absolute;float: left; top: 100px; left: 550px;">
+ <%=  submit_tag "OK",:class=>'btn-large btn-success', :id => 'my_button'%>
+ </div>
+    <%#*START DATE <%=date_select 'sorting[start_date]' ,"dob",:use_month_numbers => true,:order => [:day, :month, :year],:prompt => { :day => 'dd', :month => 'mm', :year => 'yyyy' },:start_year => 2000,:end_year=>(Date.today).year%%>
+    <%#*END DATE <%=date_select 'sorting[end_date]' ,"dob",:use_month_numbers => true,:order => [:day, :month, :year],:prompt => { :day => 'dd', :month => 'mm', :year => 'yyyy' },:start_year => 2000,:end_year=>(Date.today).year+1%%>
+    <%#=submit_tag "ok",:class=>'btn-small btn-info'%>
 
   <%end%>
   <%if !@stcs.empty?%>
@@ -93,10 +115,11 @@
   <div style="width:950px;height:200px;background-color:white;margin-left:30px;margin-top: 20px;border:3px solid black; overflow:scroll;">
 
     <%h=@a.max%>
-    <center><%=image_tag Gchart.line(:title => 'sales',:bar_colors => 'FF0000,00FF00',:size=>'1000x200',
+    <center>
+      <%=image_tag Gchart.line(:title => 'sales',:bar_colors => 'FF0000,00FF00',:size=>'1000x200',
               :data => [@a,@r],:axis_with_labels => ["x","y"],:axis_labels => [@l,[0,(h/4).round,(h/3).round,(h/2).round,h.round]] )%></center>
 <%else%>
-          <%="No TRANSCATIONS IN GIVEN DATES"%>
+          <%#=  "No TRANSCATIONS IN GIVEN DATES" %>
 <%end%>
     </div>
 </div>
