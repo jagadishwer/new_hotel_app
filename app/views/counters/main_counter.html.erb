@@ -2,7 +2,7 @@
 
 
   $(document).ready(function(){
-
+   
   $('#refund').click(function(e) {
     //alert("ok");
     //alert(session['card']);
@@ -101,12 +101,14 @@
     xmlhttp.open("GET","/swipeCards/cancel",true);
     xmlhttp.send();
     
-
+  
    
 //loadXMLDoc();
   }
+  
 
 </script>
+
 <style>
   #myDiv1{
     width: 350px;
@@ -121,16 +123,17 @@
     width: 350px;
     height: 360px;
     background-color:whitesmoke;
+
 }
 #card_no{
-  height:30px;
+  height: 30px;
 }
 </style>
-<div style="position:absolute;left:50px">
+<div style="position:absolute;left:55px">
 <h1>Main Counter</h1>
 </div>
 <div style="position:absolute;right:100px;float:right">
-  CARD NUMBER:<%=text_field_tag "card_no"%> 
+  CARD NUMBER:<%=text_field_tag "card_no" %>
   <button type="button" class="btn-" onclick="loadXMLDoc()">Ok</button>
 </div>
 <br/><br/><br/>
@@ -142,11 +145,10 @@
 <%#=link_to_modal 'Refund', '/swipeCards/refund', :class=>"btn-large btn-warning"%></li>
   </ul>
 </div>
+
 <div id="myDiv1" style ="position:absolute;right:100px; float:right;top:70px">
   
   <h4 style="background-color:#999999">CARD DETAILS</h4>
 <div id="myDiv">
 </div>
 </div>
-
-

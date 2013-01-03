@@ -1,0 +1,26 @@
+<h2>Edit User</h2>
+
+<%= form_for @user, {:url => '/manage_users/update'} do |f| %>
+  <%= f.hidden_field :id %>
+  <div>
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+  </div>
+  <div>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+  <div>
+    <%= f.label :password_confirmation, "Confirm Password" %>
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <div>
+    <%= f.select :role_ids, Role.all.collect { |c| [ c.name, c.id ] }, { :include_blank => 'Please select Role' } %>
+  </div>
+  <div>
+    <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %>
+  </div>
+  <div>
+    <%= f.submit "Update User" %>
+  </div>
+<% end %>

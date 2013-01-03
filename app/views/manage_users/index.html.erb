@@ -1,0 +1,27 @@
+<div style="width:1000px;height:500px;background-color:white;margin:auto;border:2px solid #333333;overflow:scroll;">
+  
+  <table class="table table-hover" style="margin:auto;">
+  <tr style="background-color:#ffcccc;height: 50px;">
+    <th> S.NO</th>
+    <th>User Name</th>
+    <th></th>
+  </tr>
+  <% @i = 0 %>
+  <% @users.each do |u| %>
+    <tr style="height: 70px;">
+      <td><% @i+=1  %><%= @i %></td>
+      <td><%= u.email %></td>
+      <td><%= link_to "Edit", {:controller => 'manage_users', :action => 'edit', :id => u.id}, :class => 'btn-large btn-info' %>
+      &nbsp;
+      <%= link_to "Delete", {:controller => 'manage_users', :action => 'destroy', :id => u.id}, :method => :delete,:class => 'btn-large btn-danger', :confirm => "Are you sure?, the action cannot be undone!" %></td>
+  </tr>
+<% end %>
+  </table>
+  <br>
+  <div>
+  <%=  link_to "New User", {:controller => 'manage_users', :action => 'new'}, :class => 'btn-large btn-success'%>
+</div>
+</div>
+
+
+

@@ -9,6 +9,7 @@ gem 'activeadmin'
 gem 'mysql2'
 gem 'devise'
 gem 'anjlab-bootstrap-rails', '>= 2.1', :require => 'bootstrap-rails'
+
 #gem 'twitter-bootstrap-rails'
 gem 'googlecharts'
 gem 'pdfkit', "~> 0.5.2"
@@ -32,7 +33,7 @@ gem 'rolify'
 
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-  gem 'jquery-modal-rails'
+gem 'jquery-modal-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

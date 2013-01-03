@@ -10,6 +10,8 @@
 #
 
 class SwipeCard < ActiveRecord::Base
-  # attr_accessible :title, :body
+  attr_accessible :card_no
   has_many :transactions
+  validates :card_no, :uniqueness => true
+  
 end
