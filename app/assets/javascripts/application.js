@@ -13,6 +13,7 @@
 //= require jquery.ui.all
 //= require jquery.modal
 //= require jquery
+
 //= require jquery_ujs
 //= require jquery_nested_form
 //= require_tree .
@@ -33,4 +34,5 @@
 //= require twitter/bootstrap/carousel
 //= require twitter/bootstrap/typeahead
 //= require twitter/bootstrap/affix
+
 

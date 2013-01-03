@@ -21,10 +21,10 @@
 
 <div id="myDiv" style="width:100%;">
 <%#*<div>%>
-  <%#*<h2><%= @counter.name %> Itemssssssssssss/h2>%>
+  <%#*<h2><%= @counter.name %>
 <%#*</div>%>
   
-<div class ="main_div"style="width: 60%;height:800px;margin-bottom: 0px;float: left;margin-left: 30px;overflow: scroll;border:1px solid black;padding: 25px;">
+<div class ="main_div"style="width: 30%;height:800px;margin-bottom: 0px;float: left;margin-left: 30px;overflow: scroll;border:1px solid black;padding: 25px;">
   <div class="row-fluid" style="margin-left:0px;">
 <% @items.each do |i| %>
    <div class="span3"> <%= link_to_modal (image_tag i.attachments.shuffle.first.image_url,:size=>'180x180'),{:controller=>'orderlists',:action=>'new',:id=>i.id,:price=>i.price},:class=>"thumbnail",:style=>'height:180px;width:180px;
@@ -40,17 +40,30 @@ line-height: 50px;'%>
 <div style="width:30%;height:400px; background-color:white;margin-bottom: 0px;float: left;margin-left: 0px;overflow: scroll;">
       <table class="table table-bordered">
         <tr style="background-color:#ffcccc; ">
-          <td>Item</td><td>Quantity </td><td>Unit Price</td><td>Total Price</td><td></td>
+          <td>Item</td>
+          <td>Quantity </td>
+          <td>Unit Price(Rs)</td>
+          <td>Total Price(Rs)</td>
+          <td></td>
         </tr>
         <%@sum=0%>
         <%if !@order_lists.empty?%>
         <%@order_lists.each do |ol|%>
         <tr>
-          <td><%=ol.itemname%></td><td><%=ol.quantity%></td><td><%=ol.price%></td><td><%@sum+=ol.quantity*ol.price%><%=ol.quantity*ol.price%></td><td><%=link_to "delete",{:controller=>"orderlists",:action=>'cancel',:id=>ol.id} %></td>
+          <td><%=ol.itemname%></td>
+          <td><%=ol.quantity%></td>
+          <td><%=ol.price%></td>
+          <td><%@sum+=ol.quantity*ol.price%><%=ol.quantity*ol.price%></td>
+          <td><%=link_to "delete",{:controller=>"orderlists",:action=>'cancel',:id=>ol.id} %></td>
         </tr>
         <%end%>
         <%end%>
-        <tr style="background-color:#cccccc; "><td></td><td>TOTAL</td><td></td><td><%=@sum%></td><td></td>
+        <tr style="background-color:#cccccc; ">
+          <td></td>
+          <td>TOTAL</td>
+          <td></td>
+          <td><%=@sum%></td>
+          <td></td>
         </tr>
       </table>
   

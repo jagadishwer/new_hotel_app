@@ -24,22 +24,24 @@
     <%#*//setTimeout("loadXMLDoc()", 1000);%>
   <%#*}%>
 
-  
-
-    
-
-  
-
+  <%#*You need to sign in or sign up before continuing.%>
 
 <%#*</script>%>
+<script>
+  $(function() {
+  $('.datepicker').datepicker();
+});
 
-
-
+</script>
 <style>
   select {
 width: 70px;
 border: 1px solid #CCC;
 background-color: white;
+}
+#my_button{
+  height: 100px;
+  width: 100px;
 }
 </style>
 
@@ -69,32 +71,37 @@ background-color: white;
         <tr style="background-color:#cccccc; "><td></td><td>TOTAL</td><td></td><td><%=Customer.sum(:total,:conditions=>{:status=>2,:date_of_transcation=>Date.today})%></td>
         </tr>
       </table>
-
-
-
-
-
- 
-     
- 
 </div>
 <div id="myDiv"style="width:50%;height:800px;background-color:white;float: left;margin-left:30px;overflow:scroll; ">
+  <h3>Last Transactions</h3>
 <div style="margin:50px 100px 50px 100px;">
 <%#=link_to_modal "Add Tables", {:controller=>'tables',:action=>'new'},:class=>'btn btn-warning'%>
 <%#=link_to_modal "Add Tax", '#',:class=>'btn btn-warning'%>
 <%#=link_to_modal "Add Category", {:controller=>'categories',:action=>'new'},:class=>'btn btn-warning'%>
 <%#=link_to_modal "Add Items", {:controller=>'items',:action=>'new'},:class=>'btn btn-warning'%>
 <%#=link_to "Add Tax", {:controller=>'tables',:action=>'new'},:class=>'btn btn-warning'%>
+  
 </div>
   <%=form_for :sorting, :url=>"dashboard" do%>
- START DATE <%=date_select 'sorting[start_date]' ,"dob",:use_month_numbers => true,:order => [:day, :month, :year],:prompt => { :day => 'dd', :month => 'mm', :year => 'yyyy' },:start_year => 2000,:end_year=>(Date.today).year%>
- END DATE <%=date_select 'sorting[end_date]' ,"dob",:use_month_numbers => true,:order => [:day, :month, :year],:prompt => { :day => 'dd', :month => 'mm', :year => 'yyyy' },:start_year => 2000,:end_year=>(Date.today).year%>
-  <%=submit_tag "ok",:class=>'btn-small btn-info'%>
-
+  
+  <div style ="position: absolute;width:350px;top: 180px;">
+    
+      <%= label_tag  'start Date'%>
+      <%= text_field_tag 'sorting[start_date]',nil, :class => 'datepicker'%>
+    
+    
+      <%= label_tag 'end Date' %>
+      <%= text_field_tag 'sorting[end_date]',nil, :class => 'datepicker'%>
+    
+  </div>
+ <div style ="position: absolute;float: right; top: 200px; right: 250px;">
+ <%=  submit_tag "OK",:class=>'btn-large btn-success', :id => 'my_button'%>
+ </div>
 <%end%>
+  
   <%if !@sorted_customers.nil?%>
- <%=link_to "save as PDF",{:action=>'sales',:format=>'pdf',:end_date=>@ed,:start_date=>@sd},:target=>'_blank',:class=>'btn btn-success'%><br/><br/>
-
+  <br><br><br><br><br>
+ 
     <table class="table table-bordered">
         <tr style="background-color:#ffcccc; "> <td>SERIAL NO:</td> <td >COUNTER: </td><td>TIME</td><td>TOTAL</td>
           <%#*<td></td>%>
@@ -112,6 +119,7 @@ background-color: white;
         <tr style="background-color:#cccccc; "><td></td><td>TOTAL</td><td></td><td><%=Customer.sum(:total,:conditions=>{:status=>2,:date_of_transcation=>[@sd..@ed]})%></td>
         </tr>
       </table>
+  
  <%@a=[];@l=[]%>
  <%@a<<0;@l<<0%>
  <%(@sd..@ed).each do |x|%>
@@ -123,6 +131,12 @@ background-color: white;
 <%=image_tag Gchart.line(:title => 'sales',:bar_colors => 'FF0000,00FF00',
               :data => @a,:axis_with_labels => ["x","y"],:axis_labels => [@l,@a] )%>
  <%#=image_tag Gchart.line()%>
+  <br><br>
+  <div class="row-fluid">
+   <div class ="span4 offset4">
+<%=link_to "Save as PDF",{:action=>'sales',:format=>'pdf',:end_date=>@ed,:start_date=>@sd},:target=>'_blank',:class=>'btn-large btn-info'%><br/><br/>
+   </div>
+  </div>
   <%end%>
- 
 </div>
+  

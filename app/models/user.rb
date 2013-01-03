@@ -16,7 +16,6 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  time_zone              :string(255)
-#  tax                    :float
 #
 
 class User < ActiveRecord::Base
@@ -28,7 +27,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me,:time_zone,:tax
+  attr_accessible :email, :password, :password_confirmation, :remember_me,:time_zone,:tax, :role_ids
   
   # attr_accessible :title, :body
 #has_and_belongs_to_many :hotelsession
