@@ -1,4 +1,39 @@
 <script>
+
+
+  $(document).ready(function(){
+   
+  $('#refund').click(function(e) {
+    //alert("ok");
+    //alert(session['card']);
+    if ($('#check').val()==null){
+      alert("Swipe Your Card");
+    }else{
+
+     var xmlhttp;
+    if (window.XMLHttpRequest)
+    {// code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {// code for IE6, IE5
+      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      {
+        document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+      }
+    }
+
+    xmlhttp.open("GET","/swipeCards/refund",true);
+    xmlhttp.send();
+
+    }
+
+  });
+  });
   function loadXMLDoc()
   {
 
@@ -24,6 +59,7 @@
     xmlhttp.send();
    
   }
+
 
   function card_no(order)
   {
@@ -65,12 +101,14 @@
     xmlhttp.open("GET","/swipeCards/cancel",true);
     xmlhttp.send();
     
-
+  
    
 //loadXMLDoc();
   }
+  
 
 </script>
+
 <style>
   #myDiv1{
     width: 350px;
@@ -103,12 +141,14 @@
   <ul class="nav nav-pills nav-stacked" style="margin-top:10px;padding:10px">
   <li><%=link_to_modal 'New Swipe Card', '/swipeCards/new', :class=>"btn-large btn-success"%></li>
   <li><%=link_to_modal 'Recharge', '/swipeCards/recharge', :class=>"btn-large btn-primary"%></li>
-  <li><%=link_to_modal 'Refund', '/swipeCards/refund', :class=>"btn-large btn-warning"%></li>
+  <li><%=link_to 'Refund', '#', :id=>'refund',:class=>"btn-large btn-warning"%>
+<%#=link_to_modal 'Refund', '/swipeCards/refund', :class=>"btn-large btn-warning"%></li>
   </ul>
 </div>
-<div id="myDiv1", style ="position:absolute;right:100px; float:right;top:70px">
-    <h4 style="background-color:#999999">CARD DETAILS</h4>
-<div id="myDiv">
 
+<div id="myDiv1" style ="position:absolute;right:100px; float:right;top:70px">
+  
+  <h4 style="background-color:#999999">CARD DETAILS</h4>
+<div id="myDiv">
 </div>
 </div>

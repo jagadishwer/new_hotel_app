@@ -50,11 +50,11 @@ class CountersController < ApplicationController
      @tax=Tax.sum(:percentage)/100
      render :layout => false
   end
-  def confirm_order
-    @card=SwipeCard.new()
-    @total=params[:total]
-
-  end
+#  def confirm_order
+#    @card=SwipeCard.new()
+#    @total=params[:total]
+#
+#  end
   
   
 
