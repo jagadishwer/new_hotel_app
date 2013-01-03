@@ -1,5 +1,11 @@
 HotelApp::Application.routes.draw do
  
+  get "suppliers/new"
+
+  get "suppliers/show"
+
+  get "suppliers/edit"
+
   get "transactions/show"
 
   get "swipe_cards/new"
@@ -46,8 +52,9 @@ end
   
 
 
-  match '/kitchen' => "hotelsessions#show"
+  match '/kitchen' => "kitchens#kitchen"
   match '/billing' => "hotelsessions#billing"
+   match '/dashboard' => "hotelsessions#dashboard"
   #match '/tables/new' => "tables#new"
  #resources :hotelsessions
   # The priority is based upon order of creation:

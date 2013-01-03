@@ -21,7 +21,8 @@ class StockListItemsController < ApplicationController
   #/stock_list_items/show.json
   def show
     @stli = StockListItem.all
-    @stli2={:itemlist=>@stli}
+    @suppliers= Suppliers.all
+    @stli2={:itemlist=>@stli,:suppliers=>@suppliers}
     respond_to do|format|
       format.html
       format.json {render :json=>@stli2}
