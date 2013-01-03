@@ -5,6 +5,7 @@ $(document).ready(function(){
     
     if(confirm("Are you sure?, the action cannot be undone!")){
       var xmlhttp;
+
     if (window.XMLHttpRequest)
     {// code for IE7+, Firefox, Chrome, Opera, Safari
       xmlhttp=new XMLHttpRequest();
@@ -31,30 +32,46 @@ $(document).ready(function(){
 });
 
 $('#swipe').click(function(e) {
+
+
 $('#back').show();
 var sum = $('#sum').val();
       var xmlhttp;
+      //alert(sum);
+      //alert($('#check').val());
+      if ($('#check').val()!=null){
+ 
+      //alert(session);
     if (window.XMLHttpRequest)
     {// code for IE7+, Firefox, Chrome, Opera, Safari
       xmlhttp=new XMLHttpRequest();
+     
     }
     else
     {// code for IE6, IE5
       xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    
     }
     xmlhttp.onreadystatechange=function()
     {
       if (xmlhttp.readyState==4 && xmlhttp.status==200)
       {
-        document.getElementById("myDiv1").innerHTML=xmlhttp.responseText;
+        document.getElementById("swipecard").innerHTML=xmlhttp.response;
+       loadXMLDoc();
       }
     }
+    
 //alert('ok');
-    xmlhttp.open("GET","/counters/confirm_order?total="+sum,true);
+    //xmlhttp.open("GET","/counters/confirm_order?total="+sum,true);
+    xmlhttp.open("GET","/orders/create?total="+sum,true);
     xmlhttp.send();
 
+      }
+      else{
+        alert('swipe your card');
+      }
 
-
+  
 });
 
 
@@ -94,13 +111,16 @@ var sum = $('#sum').val();
 $('#back').hide();
 //alert('ok');
     var xmlhttp;
+    var xmlhttp1;
     if (window.XMLHttpRequest)
     {// code for IE7+, Firefox, Chrome, Opera, Safari
       xmlhttp=new XMLHttpRequest();
+      xmlhttp1=new XMLHttpRequest();
     }
     else
     {// code for IE6, IE5
       xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+       xmlhttp1=new ActiveXObject("Microsoft.XMLHTTP");
     }
     xmlhttp.onreadystatechange=function()
     {
@@ -109,7 +129,16 @@ $('#back').hide();
         document.getElementById("myDiv1").innerHTML=xmlhttp.responseText;
       }
     }
+     xmlhttp1.onreadystatechange=function()
+    {
+      if (xmlhttp1.readyState==4 && xmlhttp1.status==200)
+      {
+        document.getElementById("swipecard").innerHTML=xmlhttp1.responseText;
+      }
+    }
 //alert('ok');
+xmlhttp1.open("GET","/swipeCards/swipe_card",true);
+    xmlhttp1.send();
     xmlhttp.open("GET","/counters/final_order",true);
     xmlhttp.send();
 
@@ -171,12 +200,12 @@ quantity=$('#quantity').val();
 
   }
 
-  function confirmation(sum)
+  function confirmation()
   {
 
     
       sum = $('#sum').val();
-       card_no = $('#card_no').val();
+       //card_no = $('#card_no').val();
       
       var xmlhttp;
     if (window.XMLHttpRequest)
@@ -195,7 +224,30 @@ quantity=$('#quantity').val();
       }
     }
 //alert('ok');
-    xmlhttp.open("GET","/orders/create?total="+sum+"&card_no="+card_no,true);
+    //xmlhttp.open("GET","/orders/create?total="+sum+"&card_no="+card_no,true);
+    xmlhttp.open("GET","/orders/create?total="+sum,true);
+    xmlhttp.send();
+
+  }
+  function swipe_card(){
+    var xmlhttp;
+    if (window.XMLHttpRequest)
+    {// code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {// code for IE6, IE5
+      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      {
+        document.getElementById("swipecard").innerHTML=xmlhttp.responseText;
+      }
+    }
+//alert('ok');
+    xmlhttp.open("GET","/swipeCards/swipe_card?card_no="+$('#card_no').val(),true);
     xmlhttp.send();
 
   }
@@ -219,7 +271,33 @@ quantity=$('#quantity').val();
     //alert("ok");
 loadXMLDoc();
   }*/
- 
+  function cancel()
+  {
+
+  var xmlhttp;
+    if (window.XMLHttpRequest)
+    {// code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {// code for IE6, IE5
+      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      {
+        document.getElementById("swipecard").innerHTML=xmlhttp.responseText;
+      }
+    }
+
+    xmlhttp.open("GET","/swipeCards/swipe_card_cancel",true);
+    xmlhttp.send();
+
+
+
+//loadXMLDoc();
+  }
 
 </script>
 
@@ -277,9 +355,9 @@ loadXMLDoc();
 
 </div>
   <div style="width: 30%;margin-bottom: 0px;float: left;margin-left: 0px;">
-    <div id="swipcard" style='height: 50px;
-line-height: 50px;'>
-      <button type="button"  id="back" class="btn" onclick="loadXMLDoc()">back</button>
+    <button type="button"  id="back" class="btn" onclick="loadXMLDoc()">back</button>
+    <div id="swipecard" style='height: 150px; background-color:yellow;line-height: 50px;border: 1px solid;'>
+      
     </div>
 
 

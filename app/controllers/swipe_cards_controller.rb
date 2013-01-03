@@ -5,9 +5,14 @@ class SwipeCardsController < ApplicationController
   end
 
   def refund
-   
+   @card=SwipeCard.find(session[:card])
+   @prev_balance=@card.balance.to_f
+   if @card.update_attributes(:balance=>0)
+     Transaction.create(:counter_id=>@counter,:cost=>@prev_balance,:swipe_card_id=>@card.id,:type_of_transaction=>3,:balance=>@card.balance)
+       render 'card_details', :layout=>false
+   end
         
-    @transactions=Transaction.all
+    #@transactions=Transaction.all
     
   end
   def create
@@ -105,5 +110,23 @@ class SwipeCardsController < ApplicationController
 
     #render 'card_details', :layout=>false
   end
-
+  def swipe_card
+    #render :text=>"ok"
+    if params.include?("card_no")
+       @card= SwipeCard.find_by_card_no(params["card_no"])
+       unless @card.nil?
+      session[:card]=@card.id
+       else
+         render :text=>"card not found",:layout=>false
+       end
+    elsif !session[:card].nil?
+      
+      @card= SwipeCard.find(session[:card])
+    end
+    render :layout=>false
+  end
+def swipe_card_cancel
+  session['card']=nil
+  render 'swipe_card', :layout=>false
+end
 end

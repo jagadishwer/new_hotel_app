@@ -1,0 +1,8 @@
+<%unless session[:card].nil?%>
+Card Balance <%=@card.balance%>
+<%=hidden_field_tag :check, session[:card]%>
+<button type="button" class="btn" onClick="cancel()">cancel</button>
+<%else%>
+<%=text_field_tag "card_no"%> <button type="button" class="btn" onClick="swipe_card()">Ok</button>
+
+<%end%>

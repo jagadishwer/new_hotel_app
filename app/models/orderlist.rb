@@ -10,6 +10,7 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  cancel_item :boolean
+#  counter_id  :integer
 #
 
 class Orderlist < ActiveRecord::Base

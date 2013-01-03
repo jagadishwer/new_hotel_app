@@ -16,7 +16,6 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  time_zone              :string(255)
-#  tax                    :float
 #
 
 class User < ActiveRecord::Base

@@ -8,7 +8,9 @@ def cancel_order
     redirect_to :controller => "counters", :action => "final_order"
   end
  def create
-    @card=SwipeCard.find_by_card_no(params[:card_no])
+    #@card=SwipeCard.find_by_card_no(params[:card_no])
+    
+    @card=SwipeCard.find(session[:card])
     unless @card.nil?
       if (@card.balance.to_f >= params[:total].to_f)
       @card.balance=@card.balance.to_f-params[:total].to_f
@@ -26,7 +28,8 @@ def cancel_order
      c=Customer.create(:counter_id=>session[:counter],:total=>@sum,:status=>2)
      c.orders<<@order
      Transaction.create(:counter_id=>session[:counter],:cost=>@sum,:swipe_card_id=>@card.id,:type_of_transaction=>2,:balance=>@card.balance)
-render :text=>"Transaction Was Successful"
+session[:card]=nil
+         render :text=>"Transaction Was Successful"
    end
       else
         render :text=>" In Suficient Balance"

@@ -12,6 +12,7 @@
 #  adjustment_reason   :string(255)
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
+#  counter_id          :integer
 #
 
 class Customer < ActiveRecord::Base

@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: items
+#
+#  id          :integer          not null, primary key
+#  item_name   :string(255)
+#  price       :float
+#  category    :string(255)
+#  description :text
+#  category_id :integer
+#  counter_id  :integer
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 # This model initially had no columns defined.  If you add columns to the
