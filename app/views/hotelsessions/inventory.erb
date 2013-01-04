@@ -14,16 +14,19 @@
     border:1px solid rgb(221,221,221)
   }
   #my_button{
-  height: 100px;
-  width: 100px;
+  height: 130px;
+  width: 300px;
 }
 </style>
 <%@a=[];@l=[];@r=[]%>
 <%@a<<0;@l<<0;@r<<0%>
-<div id="myDiv"style="width:950px;height:600px;float: left;margin-left:30px;">
-<h3>Inventory</h3>
+<div id="myDiv"style="width:950px;height:880px;float: left;margin-left:30px;overflow: scroll;padding: 10px;">
+  <h3>Inventory</h3>
+  <div style="width:900px;background-color:#ff6666; border: 1px solid;">
+ <div style ="width:350px;float:left;margin-left: 100px;margin-top:50px;">
+    
   <%=form_for :sorting, :url=>"inventory" do%>
-  <div style ="position: absolute;width:350px;top: 80px;">
+
 
       <%= label_tag  'start Date'%>
       <%= text_field_tag 'sorting[start_date]',nil, :class => 'datepicker'%>
@@ -33,9 +36,10 @@
       <%= text_field_tag 'sorting[end_date]',nil, :class => 'datepicker'%>
 
   </div>
- <div style ="position: absolute;float: left; top: 100px; left: 550px;">
+ <div style ="margin-top:50px;padding:20px;">
  <%=  submit_tag "OK",:class=>'btn-large btn-success', :id => 'my_button'%>
  </div>
+  </div>
     <%#*START DATE <%=date_select 'sorting[start_date]' ,"dob",:use_month_numbers => true,:order => [:day, :month, :year],:prompt => { :day => 'dd', :month => 'mm', :year => 'yyyy' },:start_year => 2000,:end_year=>(Date.today).year%%>
     <%#*END DATE <%=date_select 'sorting[end_date]' ,"dob",:use_month_numbers => true,:order => [:day, :month, :year],:prompt => { :day => 'dd', :month => 'mm', :year => 'yyyy' },:start_year => 2000,:end_year=>(Date.today).year+1%%>
     <%#=submit_tag "ok",:class=>'btn-small btn-info'%>
