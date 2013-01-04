@@ -1,2 +1,22 @@
-<h1>SwipeCards#show</h1>
-<p>Find me in app/views/swipe_cards/show.html.erb</p>
+
+<div class="page-header"style="background-color:#999999;">
+    <h1 style="text-align:left;">Swipe Card Inventory</h1>
+  </div>
+<div style="width:800px;height:500px;background-color:white;margin:auto;border:3px solid #333333;overflow:scroll;">
+<table class="table table-hover"style="border:1px solid rgb(221,221,221);margin:auto; ">
+  <tr style="background-color:#ffcccc">
+    <td> S.NO</td> <td>Card No</td><td>Balance</td><td>Last Used</td>
+  </tr>
+  <%@i=0%>
+<%@cards.each do |s|%>
+
+  <tr>
+    <td><%@i+=1%><%=@i%></td><td><%=s.card_no%></td><td><%=s.balance%></td><td><%=s.updated_at%></td><%#=link_to_modal "edit", {:controller=>'items',:action=>'edit',:id=>s.id},:class=>"btn-small btn-primary"%></td>
+
+  </tr>
+
+<%end%>
+</table>
+
+
+</div>

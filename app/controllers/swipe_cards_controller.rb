@@ -27,7 +27,7 @@ class SwipeCardsController < ApplicationController
 
   end
   def show
-
+@cards = SwipeCard.all
   end
   def recharge
     if request.post?
