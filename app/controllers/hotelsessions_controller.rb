@@ -1,6 +1,9 @@
 class HotelsessionsController < ApplicationController
+  #authorize_resource :class=>false
+  before_filter :authenticate_user!
   layout 'show', :only=>['show','billing']
-  before_filter :authenticate_user!,:only=>['show','billing','dashboard']
+  #before_filter :authenticate_user!,:only=>['show','billing','dashboard']
+  
   
   require 'gchart'
 
@@ -220,6 +223,8 @@ authorize! :billing, [@orders, @customers]
 
 
   def dashboard
+     if current_user.has_role? :admin or current_user.has_role? :manager or  current_user.has_role?:moderator
+
     @customers=Customer.find(:all,:order=>'updated_at DESC',:conditions=>{:status=>2,:date_of_transcation=>Date.today})
 
     if params.key?(:sorting)
@@ -239,7 +244,9 @@ authorize! :billing, [@orders, @customers]
     #        render :pdf => "dashboard"
     #      end
     #        end
- 
+     else
+       verify
+    end
   end
   
   def receipt
@@ -321,21 +328,21 @@ authorize! :billing, [@orders, @customers]
       #@ed=Date.parse( params[:sorting][:end_date].to_a.sort.collect{|c| c[1]}.join("-") )
       @sorted_customers=Customer.find(:all,:order=>'updated_at DESC',:conditions=>{:status=>2,:date_of_transcation=>[@sd..@ed]})
       @stcs=StockCount.find(:all,:conditions=>{:created_at=>(@sd..@ed)})
-      puts "----1--"
-      puts @stcs.inspect
-       puts "----1--"
+      #puts "----1--"
+      #puts @stcs.inspect
+      # puts "----1--"
        if !@stcs.empty?
       last=StockCount.find(:last,:conditions=>['created_at <?',@sd])
-      puts"--------2-----"
-      puts last
+      #puts"--------2-----"
+      #puts last
       if last.nil?
       last=Delivery.find(:first)
       @cost_brought_forward=0
       else
         @cost_brought_forward=last.cost
       end
-      puts last
-      puts"--------2-----"
+      #puts last
+      #puts"--------2-----"
       @stcs.unshift(last) 
       @stcs_size=@stcs.size
       @stlis=StockListItem.all

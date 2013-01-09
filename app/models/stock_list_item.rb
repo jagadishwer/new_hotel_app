@@ -9,12 +9,13 @@
 #
 
 class StockListItem < ActiveRecord::Base
+   resourcify
  attr_accessible :name
  #
  #attr_accessible :delivery_items_attributes
   has_many :stock_counts, :through=>:remaining_items
-   has_many :suppliers, :through=>:supplies
-   has_many :supplies
+#   has_many :suppliers, :through=>:supplies
+#   has_many :supplies
   has_many :remaining_items
 
   has_many :deliveries, :through=>:delivery_items

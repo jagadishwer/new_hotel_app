@@ -10,5 +10,6 @@
 #
 
 class About < ActiveRecord::Base
+ #  resourcify
   attr_accessible :description, :title
 end

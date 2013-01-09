@@ -8,12 +8,14 @@
   <%= javascript_include_tag  "jquery.modal" %>
 
   <%= javascript_include_tag  "jquery_ujs" %>
+  <%= javascript_include_tag  "jquery.keypad" %>
+   <%= stylesheet_link_tag "jquery.keypad"%>
   <%= csrf_meta_tags %>
 
 </head>
 <body onload="loadXMLDoc()" style="background-color: rgb(252, 248, 227);">
-  <p class="notice"><%= notice %></p>
-       <p><%= alert %></p>
+  <%#*<p class="notice"><%= notice%</p>%>
+       <%#*<p><%= alert %</p>%>
 
   <ul class="nav nav-pills">
     <%#*<li style="margin-left: 20px"><%=link_to "dashboard",'dashboard',:class=>"btn-large btn-warning"%</li>%>
@@ -28,7 +30,7 @@
   <%end%>
       </ul>
        
-      
+ <%= render 'layouts/messages' %>
 <%= yield %>
 
 </body>

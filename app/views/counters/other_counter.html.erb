@@ -10,7 +10,7 @@
       <div>
         <%= form_tag '/counters/counter_items' %>
         <%= hidden_field_tag :id %>
-        <%= select :counter, :counter_id, Counter.all.collect {|c| [c.name, c.id]}, { :prompt => 'Select counter' }%>
+        <%= select :counter, :counter_id, @counters.collect {|c| [c.name, c.id]}, { :prompt => 'Select counter' }%>
         <%= submit_tag "Go!" %>
       </div>
                

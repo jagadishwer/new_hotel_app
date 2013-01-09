@@ -10,5 +10,6 @@
 #
 
 class Tax < ActiveRecord::Base
+   resourcify
   # attr_accessible :title, :body
 end

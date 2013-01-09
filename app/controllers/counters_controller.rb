@@ -1,5 +1,8 @@
 class CountersController < ApplicationController
-  layout 'show'
+  before_filter :authenticate_user!
+  layout 'show' ,:except=>["counters"]
+  authorize_resource
+  before_filter :counter_authorize
   def new
     @counter= Counter.new
   end
@@ -30,6 +33,7 @@ class CountersController < ApplicationController
   end
   def other_counter
     session[:counter]=nil
+    @counters=Counter.where("name!='main_counter'")
   end
 
   
@@ -56,6 +60,8 @@ class CountersController < ApplicationController
 #
 #  end
   
-  
+  def counters
+
+  end
 
 end

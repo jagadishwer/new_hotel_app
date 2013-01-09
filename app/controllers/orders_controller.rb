@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
 #load_and_authorize_resource
-def cancel_order
+before_filter :authenticate_user!
+  def cancel_order
     @order_lists=Orderlist.find(:all,:conditions=>{:counter_id=>session[:counter],:order_id=>nil})
     @order_lists.each do |i|
       i.destroy

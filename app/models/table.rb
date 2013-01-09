@@ -7,7 +7,7 @@
 #
 
 class Table < ActiveRecord::Base
-  # attr_accessible :title, :body
+   attr_accessible :title, :body
   has_many :customers, :dependent=>:destroy
 attr_accessor :no_of_tables
   

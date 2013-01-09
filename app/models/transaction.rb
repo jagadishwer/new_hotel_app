@@ -14,6 +14,7 @@
 
 class Transaction < ActiveRecord::Base
   # attr_accessible :title, :body
+   resourcify
   belongs_to :swipe_card
   def card
     (SwipeCard.find(self.swipe_card_id)).card_no

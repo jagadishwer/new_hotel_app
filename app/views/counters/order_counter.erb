@@ -1,5 +1,10 @@
 <script>
 $(document).ready(function(){
+
+ 
+  $(':text').keypad({keypadOnly: false,
+    layout: $.keypad.qwertyLayout});
+  
   $('#back').hide();
   $('#cancel').click(function(e) {
     
@@ -75,6 +80,7 @@ var sum = $('#sum').val();
 });
 
 
+
  /*$('#confirm').click(function(e) {
    alert("ok");
       sum = $('#sum').val();
@@ -106,8 +112,30 @@ var sum = $('#sum').val();
 
 
 });
+function keyboard1()
+{
+  $('#chquan').keypad({keypadOnly: false,
+    layout: $.keypad.qwertyLayout});
+}
+
+function edit_quantity(id)
+{
+   $.ajax({
+      type: "GET",
+      url: "/orderlists/update",
+
+      data: {
+        'id' : id,
+        'quantity': $('#chquan').val()
+      }
+
+    });
+  
+}
+
   function loadXMLDoc()
   {
+   
 $('#back').hide();
 //alert('ok');
     var xmlhttp;
@@ -143,7 +171,7 @@ xmlhttp1.open("GET","/swipeCards/swipe_card",true);
     xmlhttp.send();
 
   }
-   function cancel(id)
+   function cancel1(id)
   {
 
 //alert('ok');
@@ -325,7 +353,7 @@ loadXMLDoc();
    Darken IE7 buttons by default so they stand out more given they won't have borders */
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
   }
-  #quantity{
+  #chquan, .btn-mini,#quantity{
     width:50px;
     height:50px;
 }

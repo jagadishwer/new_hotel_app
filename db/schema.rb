@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121229084253) do
+ActiveRecord::Schema.define(:version => 20130107101938) do
 
   create_table "abouts", :force => true do |t|
     t.string   "title"
@@ -111,6 +111,9 @@ ActiveRecord::Schema.define(:version => 20121229084253) do
     t.integer  "quantity"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+    t.integer  "supplier_id"
+    t.integer  "payment_status"
+    t.integer  "user_id"
   end
 
   create_table "galleries", :force => true do |t|
@@ -148,6 +151,7 @@ ActiveRecord::Schema.define(:version => 20121229084253) do
     t.datetime "updated_at",  :null => false
     t.boolean  "cancel_item"
     t.integer  "counter_id"
+    t.integer  "user_id"
   end
 
   create_table "orders", :force => true do |t|
@@ -160,6 +164,15 @@ ActiveRecord::Schema.define(:version => 20121229084253) do
     t.integer  "counter_id"
   end
 
+  create_table "paid_outs", :force => true do |t|
+    t.float    "amount"
+    t.string   "reason"
+    t.string   "to"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+  end
+
   create_table "remaining_items", :force => true do |t|
     t.integer  "stock_list_item_id"
     t.integer  "stock_count_id"
@@ -167,6 +180,7 @@ ActiveRecord::Schema.define(:version => 20121229084253) do
     t.float    "mrp"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+    t.integer  "user_id"
   end
 
   create_table "roles", :force => true do |t|
@@ -192,11 +206,20 @@ ActiveRecord::Schema.define(:version => 20121229084253) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "suppliers", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "contact_name"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
   create_table "swipe_cards", :force => true do |t|
     t.string   "card_no"
     t.float    "balance"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "user_id"
   end
 
   create_table "tables", :force => true do |t|
@@ -213,11 +236,12 @@ ActiveRecord::Schema.define(:version => 20121229084253) do
   create_table "transactions", :force => true do |t|
     t.integer  "swipe_card_id"
     t.string   "counter_id"
-    t.float    "cost"
+    t.string   "cost"
     t.integer  "type_of_transaction"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
     t.float    "balance"
+    t.integer  "user_id"
   end
 
   create_table "users", :force => true do |t|

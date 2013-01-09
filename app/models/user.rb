@@ -28,7 +28,11 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,:time_zone,:tax, :role_ids
-  
+  has_many :delivery_items
+  has_many :orderlists
+  has_many :paid_outs
+  has_many :remaining_items
+  has_many :swipe_cards
   # attr_accessible :title, :body
 #has_and_belongs_to_many :hotelsession
 

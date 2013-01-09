@@ -1,6 +1,7 @@
 class StockListItemsController < ApplicationController
   #/stock_list_items/create.json,{:name=>"<item_name>"}
-  #load_and_authorize_resource
+  before_filter :authenticate_user!
+  authorize_resource
   def new
     @stock_list_item = StockListItem.new
   end
@@ -21,7 +22,7 @@ class StockListItemsController < ApplicationController
   #/stock_list_items/show.json
   def show
     @stli = StockListItem.all
-    @suppliers= Suppliers.all
+    @suppliers= Supplier.all
     @stli2={:itemlist=>@stli,:suppliers=>@suppliers}
     respond_to do|format|
       format.html

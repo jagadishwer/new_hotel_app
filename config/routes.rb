@@ -1,5 +1,9 @@
 HotelApp::Application.routes.draw do
  
+  get "paid_outs/new"
+
+  get "paid_outs/show"
+
   get "suppliers/new"
 
   get "suppliers/show"

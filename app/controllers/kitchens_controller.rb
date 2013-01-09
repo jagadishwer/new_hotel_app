@@ -1,5 +1,8 @@
 class KitchensController < ApplicationController
+   before_filter :kitchen_authorize
   layout 'show'
+ 
+   #authorize_resource :class=>false
   def show
     if session[:kitchen].nil?
     @counter = Counter.find(params[:counter][:counter_id])
@@ -37,5 +40,7 @@ class KitchensController < ApplicationController
   end
   def kitchen
     session[:kitchen]=nil
+    @counters=Counter.where("name!='main_counter'")
+     #authorize! :write, Counter
   end
 end

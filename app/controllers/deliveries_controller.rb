@@ -1,5 +1,6 @@
 class DeliveriesController < ApplicationController
   #/deliveries/create.json,{:stock_list_item_id=>"1,2",:mrp=>"12.2,13.5",:quantity=>"3,4"}
+  before_filter :authenticate_user!
   load_and_authorize_resource
   def new
     #@delivery=DeliveryItem.new()

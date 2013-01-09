@@ -1,5 +1,7 @@
 class OrderlistsController < ApplicationController
- def new
+  before_filter :authenticate_user!
+  authorize_resource
+  def new
    
   @orderlist=Orderlist.new()
   @id=params[:id]
@@ -9,7 +11,7 @@ class OrderlistsController < ApplicationController
 # @order=Orderlist.new(:counter_id=>session[:counter],:item_id=>params[:orderlist][:id],:quantity=>params[:orderlist][:quantity],:price=>params[:orderlist][:price])
  @order=Orderlist.find_by_item_id(params[:id],:conditions=>{:counter_id=>session[:counter],:order_id=>nil})
    if @order.nil?
-   @order=Orderlist.create(:counter_id=>session[:counter],:item_id=>params[:id],:quantity=>params[:quantity],:price=>params[:price])
+   @order=Orderlist.create(:counter_id=>session[:counter],:item_id=>params[:id],:quantity=>params[:quantity],:price=>params[:price],:user_id=>current_user.id)
    else
      @order.update_attributes(:quantity=>@order.quantity+params[:quantity].to_i)
    end
@@ -21,7 +23,10 @@ class OrderlistsController < ApplicationController
  #end
  end
 
-
+def update
+  @ol=Orderlist.find(params[:id])
+  @ol.update_attributes(:quantity=>params[:quantity])
+end
 
 
 

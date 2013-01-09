@@ -1,5 +1,10 @@
 <script>
  $(document).ready(function(){
+   $('#card_no').keypad({keypadOnly: false,
+    layout: $.keypad.qwertyLayout});
+ 
+
+
     $('#refund').click(function(e) {
     //alert("ok");
     //alert(session['card']);
@@ -47,7 +52,7 @@
       }
     }
     
-    xmlhttp.open("GET","/swipeCards/card_details?id="+$('#card_no').val(),true);
+    xmlhttp.open("GET","/swipeCards/card_details?card_no="+$('#card_no').val(),true);
     xmlhttp.send();
    
   }

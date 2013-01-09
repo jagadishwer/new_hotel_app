@@ -11,7 +11,7 @@
 #
 
 class Image < ActiveRecord::Base
-  
+   resourcify
   attr_accessible :photo
   belongs_to :imagable, :polymorphic => true
   mount_uploader :photo, PhotoUploader

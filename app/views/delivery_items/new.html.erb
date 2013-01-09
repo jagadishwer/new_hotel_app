@@ -1,15 +1,18 @@
-
+<div class="page-header"style="background-color:#999999;">
+    <h1 style="text-align:left;">Delivered Item Entry</h1>
+  </div>
 <%= nested_form_for @stock_list_item,:url=>'/delivery_items/create',:html => { :multipart => true } do |f| %>
   <div style="width:800px;height:500px;background-color:white;margin:auto;border:3px solid #333333;overflow:scroll;">
 <table class="table table-hover"style="border:1px solid rgb(221,221,221);margin:auto; ">
   <tr style="background-color:#ffcccc">
-    <td> Name</td> <td>MRP</td><td>Quantity</td>
+    <th> NAME</th> <th>MRP per Unit</th><th>UNITS</th><th>SUPPLIER</th>
   </tr>
 <%@stlis.each do |s|%>
   <tr>
     <td><%=label :delivery, "#{s.name}[name]",s.name%></td>
     <td><%=text_field_tag "#{s.name}[mrp]"%></td>
     <td><%=text_field_tag "#{s.name}[quantity]"%></td>
+     <td><%=select_tag"#{s.name}[supplier_id]", options_from_collection_for_select(@suppliers, :id,:name),:prompt => "Select Supplier" %></td>
     
   </tr>
 

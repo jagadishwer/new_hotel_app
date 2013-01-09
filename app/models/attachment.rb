@@ -11,7 +11,7 @@
 #
 
 class Attachment < ActiveRecord::Base
-  
+   #resourcify
   attr_accessible :image
   belongs_to :attachable, :polymorphic => true
   mount_uploader :image, ImageUploader

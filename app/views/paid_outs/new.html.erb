@@ -1,0 +1,9 @@
+<%= form_for @paid_out, {:url=>"/paid_outs/create"} do |f| %>
+  <%= f.label :amount %>
+  <%= f.text_field :amount %></br>
+  <%= f.label :to_whom %>
+  <%= f.text_field :to %></br>
+    <%= f.label :reason %>
+  <%= f.text_area :reason, :cols => 20, :rows => 10 %></br>
+  <%= f.submit %>
+<% end %>

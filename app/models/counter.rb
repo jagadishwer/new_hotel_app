@@ -10,6 +10,7 @@
 
 class Counter < ActiveRecord::Base
   # attr_accessible :title, :body
+   resourcify
   has_many :items
   has_many :orders
   has_many :customers

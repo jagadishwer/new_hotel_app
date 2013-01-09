@@ -17,6 +17,7 @@
 
 class Customer < ActiveRecord::Base
   # attr_accessible :title, :body
+   resourcify
   belongs_to :table
   belongs_to :counter
   #has_many :items, :through=>:orders, :dependent=>:destroy

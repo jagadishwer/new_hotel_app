@@ -9,19 +9,32 @@
 #  quantity           :integer
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#  supplier_id        :integer
 #
 
 class DeliveryItem < ActiveRecord::Base
   # attr_accessible :title, :body
-  attr_accessible :stock_list_item,:stock_list_item_id, :mrp, :quantity
+   resourcify
+  attr_accessible :stock_list_item,:stock_list_item_id, :mrp, :quantity,:supplier_id,:payment_status
   #attr_accessor :item_name
   belongs_to :delivery
   belongs_to :stock_list_item
+  belongs_to :supplier
+  belongs_to :users
+
+  #after_initialize :init
   def item_name=(x)
     @s= StockListItem.create(:name=>x)
     @s.delivery_item<<self
   end
   def item_name
-
+    StockListItem.find(self.stock_list_item_id).name
   end
+#  def init
+#    #self.count ||= 15
+#    self.user_id ||= current_user.id
+#    self.payment_status ||= 0
+#  end
+
+  
 end
