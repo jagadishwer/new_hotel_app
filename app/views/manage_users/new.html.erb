@@ -1,4 +1,4 @@
-<div style="position:absolute;left:300px;top:50px;">
+<div style ="margin-left: 30px;">
   <h2>New User</h2>
 
   <%= form_for @user, {:url => '/manage_users/create'} do |f| %>
@@ -20,8 +20,8 @@
   <div>
     <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %>
   </div>
-  <div>
-    <%= f.submit "Create User" %>
-  </div>
+  
+    <%= f.submit "Create User", :class => 'btn-large btn-primary' %>
+  
 <% end %>
 </div>

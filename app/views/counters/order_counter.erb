@@ -360,34 +360,31 @@ loadXMLDoc();
 </style>
 
 <div id="myDiv" style="width:100%;">
-<div>
+<div style ="margin-left:30px;">
   <h2><%= @counter.name %> Items</h2>
 </div>
-<div class ="main_div"style="width: 60%;height:800px;margin-bottom: 0px;float: left;margin-left: 30px;overflow: scroll;border:1px solid black;padding: 25px;">
-  <div style="margin-left:80%;"> <span style="width:50px;">Quantity</span> <%=text_field_tag "quantity",'1'%></div>
-  <div class="row-fluid" style="margin-left:0px;">
+<div class ="main_div"style="width: 60%;height:800px;margin-bottom: 0px;margin-top: -10px;float: left;margin-left: 30px;overflow: scroll;border:1px solid black;padding: 1px;">
+  <div style="margin-left:80%;">
+    <span style="width:50px;">Quantity</span>
+      <%=text_field_tag "quantity",'1'%>
+  </div>
+  <div class="row-fluid" style="margin-left:5px;">
 <% @items.each do |i| %>
    <div class="span3">
-     <button type="button"  class="thumbnail" style='height:180px;width:180px;line-height: 50px;'onclick="add_item(<%=i.id%>,<%=i.price%>)"><%=image_tag i.attachments.shuffle.first.image_url,:size=>'180x180'%></button>
-
-
-
-     <p><%=  i.item_name %></p></div>
-
-
+     <button type="button"  class="thumbnail" style='margin-left: 2px;height:180px;width:180px;line-height: 40px;'onclick="add_item(<%=i.id%>,<%=i.price%>)">
+       <%=image_tag i.attachments.shuffle.first.image_url,:size=>'180x180'%>
+     </button>
+     <h4><%=  i.item_name %></h4>
+   </div>
 <% end %>
   </div>
 </div>
 <div id="myDiv1" style="width:30%;height:400px; background-color:white;margin-bottom: 0px;float: left;margin-left: 0px;overflow: scroll;">
-
-
 </div>
   <div style="width: 30%;margin-bottom: 0px;float: left;margin-left: 0px;">
-    <button type="button"  id="back" class="btn" onclick="loadXMLDoc()">back</button>
+    <button type="button"  id="back" class="btn" onclick="loadXMLDoc()">Back</button>
     <div id="swipecard" style='height: 150px; background-color:yellow;line-height: 50px;border: 1px solid;'>
-</div>
-
-
+    </div>
    <%=link_to "Confirm Order", '#',:id=>'swipe',:class=>'thumbnail btn btn-success', :style=>'height: 50px;
 line-height: 50px;'%>
   <%=link_to "Cancel Order", "#",:id=>'cancel',:class=>'thumbnail btn btn-danger', :style=>'height: 50px;
@@ -395,5 +392,4 @@ line-height: 50px;'%>
     <%=link_to_modal "adjust", '#',:class=>'thumbnail btn btn-success', :style=>'height: 50px;line-height: 50px;'%>
   <%#=link_to "print", {:action=>'receipt',:id=>customer.id}, :class=>"btn btn-warning" %>
 </div>
-
 </div>

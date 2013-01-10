@@ -223,17 +223,23 @@ authorize! :billing, [@orders, @customers]
 
 
   def dashboard
-     if current_user.has_role? :admin or current_user.has_role? :manager or  current_user.has_role?:moderator
-
+    if current_user.has_role? :admin or current_user.has_role? :manager or  current_user.has_role?:moderator
     @customers=Customer.find(:all,:order=>'updated_at DESC',:conditions=>{:status=>2,:date_of_transcation=>Date.today})
-
     if params.key?(:sorting)
-
-       @sd = Date.parse( params[:sorting][:start_date].split('-').reverse!.join('-'))
-       @ed = Date.parse( params[:sorting][:end_date].split('-').reverse!.join('-'))
-#      @sd=Date.parse( params[:sorting][:start_date].to_a.sort.collect{|c| c[1]}.join("-") )
-#      @ed=Date.parse( params[:sorting][:end_date].to_a.sort.collect{|c| c[1]}.join("-") )
+      if params[:sorting][:start_date].empty? or params[:sorting][:end_date].empty?
+        flash[:error]= 'Dates should not be empty!'
+        redirect_to :controller => 'hotelsessions', :action => 'dashboard'
+      else
+      @sd = Date.parse( params[:sorting][:start_date].split('-').reverse!.join('-'))
+      @ed = Date.parse( params[:sorting][:end_date].split('-').reverse!.join('-'))
+      if @sd > @ed
+        flash[:error] = 'Oops! Start Date should not be erlier than end date. Please try again!'
+      else
+#     @sd=Date.parse( params[:sorting][:start_date].to_a.sort.collect{|c| c[1]}.join("-") )
+#     @ed=Date.parse( params[:sorting][:end_date].to_a.sort.collect{|c| c[1]}.join("-") )
       @sorted_customers=Customer.find(:all,:order=>'updated_at DESC',:conditions=>{:status=>2,:date_of_transcation=>[@sd..@ed]})
+      end
+      end
       #     respond_to do |format|
       #  format.html # show.html.erb
       #  #format.pdf { render :text => PDFKit.new( sales ).to_pdf }
@@ -244,17 +250,14 @@ authorize! :billing, [@orders, @customers]
     #        render :pdf => "dashboard"
     #      end
     #        end
-     else
+    else
        verify
     end
   end
   
   def receipt
-
-  
     @customer=Customer.find(params[:id])
     @orders=@customer.orders
-
     render 'receipt', :layout=>false
   end
 
@@ -266,7 +269,6 @@ authorize! :billing, [@orders, @customers]
         respond_to do|format|
 
         end
-       
       end
     end
     return
@@ -275,16 +277,12 @@ authorize! :billing, [@orders, @customers]
   def adjustTotal
     puts "==========================="
     @customer=Customer.find(params[:id])
-    
-
   end
   #    pdf = kit.to_pdf
   #    file = kit.to_file('desktop')
   #render 'adjust_total'
   
   def update_total
-
-
     @customer=Customer.find(params[:id])
     t=@customer.total
     @customer.update_attributes(:adjusted_total=>t,:total=>params[:adjusted_total],:adjustment_reason=>params[:adjustment_reason])
@@ -312,16 +310,12 @@ authorize! :billing, [@orders, @customers]
     puts  "==============="
     puts params.inspect
     @sorted_customers=Customer.find(:all,:order=>'updated_at DESC',:conditions=>{:status=>2,:date_of_transcation=>[@sd..@ed]})
-
-
     render 'sales', :layout=>false
     #return
   end
   def inventory
     @stcs=[]
-    
     if params.key?(:sorting)
-
       @sd = Date.parse(params[:sorting][:start_date].split('-').reverse!.join('-'))
       @ed = Date.parse(params[:sorting][:end_date].split('-').reverse!.join('-'))
       #@sd=Date.parse( params[:sorting][:start_date].to_a.sort.collect{|c| c[1]}.join("-") )
@@ -331,13 +325,13 @@ authorize! :billing, [@orders, @customers]
       #puts "----1--"
       #puts @stcs.inspect
       # puts "----1--"
-       if !@stcs.empty?
-      last=StockCount.find(:last,:conditions=>['created_at <?',@sd])
-      #puts"--------2-----"
-      #puts last
+      if !@stcs.empty?
+        last=StockCount.find(:last,:conditions=>['created_at <?',@sd])
+        #puts"--------2-----"
+        #puts last
       if last.nil?
-      last=Delivery.find(:first)
-      @cost_brought_forward=0
+        last=Delivery.find(:first)
+        @cost_brought_forward=0
       else
         @cost_brought_forward=last.cost
       end
@@ -367,6 +361,9 @@ authorize! :billing, [@orders, @customers]
   def day_report
     @customers=Customer.find(:all,:order=>'updated_at DESC',:conditions=>{:status=>2,:date_of_transcation=>Date.today})
     @items=Item.all
+  end
+  def check_inventory
+    
   end
 
 end

@@ -1,6 +1,16 @@
-  <ul class="nav nav-pills nav-stacked" style="margin-top:80px;padding:10px">
-<li><%=link_to "Add Categories",'/categories/show',:class=>'btn-large btn-success'%></li>
-<li><%=link_to "Add Items",'/items/show',:class=>'btn-large btn-info'%></li>
-<li><%=link_to "Add Counters",'/counters/show',:class=>'btn-large btn-info'%></li>
-<li><%=link_to "Tax", '/taxes/show',:class=>'btn-large btn-success'%></li>
-</ul>
+<style>
+  .jbtn{
+    line-height: 100px;
+    padding-left: 60px;
+}
+</style>
+<div class="jheading" style ="float: none;padding:30px;width: 100%;padding-left: 40px;">Main Menu</div>
+<div class="settings_buttons" style ="width: 100%;">
+  <%=link_to "Categories",'/categories/show',:class=>'jbtn'%>
+  <%=link_to "Items",'/items/show',:class=>'jbtn'%>
+  <%=link_to "Counters",'/counters/show',:class=>'jbtn'%>
+  <%=link_to "Tax", '/taxes/show',:class=>'jbtn'%>
+</div>
+<div class ="main_div">
+  <p>Main Div</p>
+</div>

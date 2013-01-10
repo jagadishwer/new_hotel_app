@@ -5,7 +5,6 @@ class ManageUsersController < ApplicationController
   end
 
   def new
-    flash[:notice] = "u r creating new user"
     @user = User.new
   end
 
@@ -33,7 +32,7 @@ class ManageUsersController < ApplicationController
     @user = User.find(params[:user][:id])
     if @user.update_attributes(params[:user])
       flash[:notice] = "Successfully updated User."
-      redirect_to user_index_path
+      redirect_to :controller => 'manage_users', :action => 'index'
     else
       render :action => 'edit'
     end

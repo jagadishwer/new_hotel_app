@@ -107,7 +107,7 @@
     height: 400px;
     border:1px solid;
     margin-top: 50px;
-    margin-left: 20px;
+    margin-left: 0px;
     
     
 }
@@ -117,16 +117,14 @@
     background-color:whitesmoke;
 
 }
-#card_no{
-  height: 30px;
-}
+  
 </style>
 <div style="position:absolute;left:55px">
 <h1>Main Counter</h1>
 </div>
-<div style="position:absolute;right:100px;float:right">
+<div style="float:right;margin-right: 100px;margin-top: 50px;">
   CARD NUMBER:<%=text_field_tag "card_no" %>
-  <button type="button" class="btn-" onclick="loadXMLDoc()">Ok</button>
+  <button type="button" class="btn-large btn-info" onclick="loadXMLDoc()">Ok</button>
 </div>
 <br/><br/><br/>
 <div style="position:absolute;left:50px;width:200px;">
@@ -138,7 +136,7 @@
   </ul>
 </div>
 
-<div id="myDiv1" style ="position:absolute;right:100px; float:right;top:70px">
+<div id="myDiv1" style ="float:right;margin-right: -350px;">
   
   <h4 style="background-color:#999999">CARD DETAILS</h4>
 <div id="myDiv">

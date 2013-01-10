@@ -31,6 +31,7 @@ authorize_resource
       @counter=Counter.find_by_name('main_counter')
 
       Transaction.create(:counter_id=>@counter,:cost=>params[:swipe_card][:balance].to_f,:swipe_card_id=>@card.id,:type_of_transaction=>1,:balance=>@card.balance,:user_id=>current_user.id)
+      flash[:notice] = "Swipe card created successfully!"
       redirect_to :action=>'main_counter', :controller=>'counters'
     else
       redirect_to :action=>'new'

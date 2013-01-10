@@ -17,13 +17,25 @@
   height: 130px;
   width: 300px;
 }
+.hr1{
+  height: 10px;
+  color: red;
+  background-color: red;
+  width: 10px;
+}
+.hr2{
+  height: 10px;
+  color: greenyellow;
+  background-color: green;
+  width: 10px;
+}
 </style>
 <%@a=[];@l=[];@r=[]%>
 <%@a<<0;@l<<0;@r<<0%>
-<div id="myDiv"style="width:950px;height:880px;float: left;margin-left:30px;overflow: scroll;padding: 10px;">
+<div id="myDiv"style="width:1000px;height:880px;float: left;margin-left:40px;overflow: scroll;padding: 10px;">
   <h3>Inventory</h3>
   <div style="width:900px;background-color:#ff6666; border: 1px solid;">
- <div style ="width:350px;float:left;margin-left: 100px;margin-top:50px;">
+ <div style ="width:350px;float:left;margin-left: 30px;margin-top:50px;">
     
   <%=form_for :sorting, :url=>"inventory" do%>
 
@@ -50,7 +62,7 @@
 
 
 
-    <div style="width:950px;height:500px;background-color:white; margin-left:30px;border:3px solid black; overflow:scroll;">
+    <div style="width:900px;height:500px;background-color:white; margin-left:8px;border:3px solid black; overflow:scroll;">
       <table class="table table-hover "style="border:1px solid rgb(221,221,221)">
         <tr style="background-color:#ffcccc"><td></td><%(1..@stcs_size-1).each do |x|%>
             <td><%=@stcs[x].created_at.to_date%></td>
@@ -126,14 +138,19 @@
     </table>
 
   </div>
-  <div style="width:950px;height:200px;background-color:white;margin-left:30px;margin-top: 20px;border:3px solid black; overflow:scroll;">
-
+  <div style="width:900px;height:400px;background-color:white;margin-left:10px;margin-top: 20px;border:3px solid black; overflow:scroll;">
+    <div style="width: auto;float: right;margin-right: 80px;margin-top: 50px;">
+      <ul class ="nav nav-pills nav-stacked">
+      <li><hr class="hr1"></hr></li>Sales
+      <li><hr class="hr2"></hr></li>Raw Items
+      </ul>
+    </div>
     <%h=@a.max%>
     <center>
-      <%=image_tag Gchart.line(:title => 'sales',:bar_colors => 'FF0000,00FF00',:size=>'1000x200',
+      <%=image_tag Gchart.line(:title => 'sales',:bar_colors => 'FF0000,00FF00',:size=>'600x300',
               :data => [@a,@r],:axis_with_labels => ["x","y"],:axis_labels => [@l,[0,(h/4).round,(h/3).round,(h/2).round,h.round]] )%></center>
 <%else%>
           <%#=  "No TRANSCATIONS IN GIVEN DATES" %>
 <%end%>
-    </div>
+  </div>
 </div>

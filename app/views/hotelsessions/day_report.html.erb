@@ -1,22 +1,13 @@
+<div style ="margin-left: 30px;margin-top:20px;">
+    <%=link_to "Save as PDF",{:action=>'inventory_pdf',:format=>'pdf',:end_date=>@ed,:start_date=>@sd},:target=>'_blank',:class=>'btn-large btn-success'%><br/><br/>
+</div>
 
-
-
-
-
-
-
-
-    <%=link_to "save as PDF",{:action=>'inventory_pdf',:format=>'pdf',:end_date=>@ed,:start_date=>@sd},:target=>'_blank',:class=>'btn btn-success'%><br/><br/>
-
-
-
-    <div style="width:950px;height:500px;background-color:white; margin-left:30px;border:3px solid black; overflow:scroll;">
-      <table class="table table-hover "style="border:1px solid rgb(221,221,221)">
-        <tr style="background-color:#ffcccc"><td></td>
-          <td><%=Date.today%></td><td></td>
-          </tr>
-
-          <tr><td>Customer count</td>
+<div style="width:950px;height:500px;background-color:white; margin-left:30px;border:3px solid black; overflow:scroll;">
+  <table class="table table-hover "style="border:1px solid rgb(221,221,221)">
+    <tr style="background-color:#ffcccc"><td></td>
+       <td><%=Date.today%></td><td></td>
+         </tr>
+         <tr><td>Customer count</td>
             <td> <%=Customer.count(:conditions=>{:date_of_transcation=>Date.today})%></td><td></td>
           </tr>
         <tr><td>NET SALES</td>
@@ -41,9 +32,6 @@
 
 
 
-
-
-     
 
     </table>
 <p style="background-color: rgb(221, 221, 221);text-align: center;font-weight:bold">HOURLY TRANSACTIONS</p>

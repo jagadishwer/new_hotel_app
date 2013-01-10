@@ -18,7 +18,7 @@ $(document).ready(function(){
         <%@order_lists.each do |ol|%>
         <tr>
           <td><%=ol.itemname%></td><td> <%=text_field_tag :chquan,ol.quantity,:onchange=>"edit_quantity(#{ol.id})"%><%#=ol.quantity%></td><td><%=ol.price%></td><td><%@sum+=ol.quantity*ol.price%><%=ol.quantity*ol.price%></td><td>
- <button type="button" class="btn-mini btn-danger" onclick="cancel1(<%=ol.id%>)" confirm = "Are you sure?, the action cannot be undone!">delete</button>
+ <button type="button" class="btn-mini btn-danger" onclick="cancel1(<%=ol.id%>)" confirm = "Are you sure?, the action cannot be undone!">Delete</button>
 
     <%#=link_to "delete",{:controller=>"orderlists",:action=>'cancel',:id=>ol.id} %></td>
         </tr>

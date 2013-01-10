@@ -1,19 +1,18 @@
+
+</style>
 <div id="myDiv">
   <div class="page-header"style="background-color:#999999;">
     <h1 style="text-align:left;">Counter</h1>
   </div>
-
   <div style="width: 600px;height:800px; background-color:white;margin-bottom: 50px;float: left;margin-left: 30px;overflow: scroll;">
     <table class="table table-bordered">
       <tr style="background-color:blanchedalmond; ">
-        
       <div>
         <%= form_tag '/counters/counter_items' %>
         <%= hidden_field_tag :id %>
         <%= select :counter, :counter_id, @counters.collect {|c| [c.name, c.id]}, { :prompt => 'Select counter' }%>
-        <%= submit_tag "Go!" %>
+        &nbsp;&nbsp;<%= submit_tag "Go!", :class => 'btn-large btn-primary'%>
       </div>
-               
       </tr>
     </table>
   </div>

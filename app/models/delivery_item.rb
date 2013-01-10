@@ -14,8 +14,9 @@
 
 class DeliveryItem < ActiveRecord::Base
   # attr_accessible :title, :body
+
    resourcify
-  attr_accessible :stock_list_item,:stock_list_item_id, :mrp, :quantity,:supplier_id,:payment_status
+  attr_accessible :stock_list_item,:stock_list_item_id, :mrp, :quantity,:supplier_id,:payment_status, :user_id
   #attr_accessor :item_name
   belongs_to :delivery
   belongs_to :stock_list_item

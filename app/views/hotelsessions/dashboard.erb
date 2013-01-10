@@ -73,31 +73,30 @@ background-color: white;
       </table>
 </div>
 <div id="myDiv"style="width:50%;height:800px;background-color:white;float: left;margin-left:30px;overflow:scroll; ">
-  <h3>Last Transactions</h3>
-<div style="margin:50px 100px 50px 100px;">
+  
+<%#*<div style="margin:50px 100px 50px 100px;">%>
 <%#=link_to_modal "Add Tables", {:controller=>'tables',:action=>'new'},:class=>'btn btn-warning'%>
 <%#=link_to_modal "Add Tax", '#',:class=>'btn btn-warning'%>
 <%#=link_to_modal "Add Category", {:controller=>'categories',:action=>'new'},:class=>'btn btn-warning'%>
 <%#=link_to_modal "Add Items", {:controller=>'items',:action=>'new'},:class=>'btn btn-warning'%>
 <%#=link_to "Add Tax", {:controller=>'tables',:action=>'new'},:class=>'btn btn-warning'%>
   
-</div>
+<%#*</div>%>
+  <div>
   <%=form_for :sorting, :url=>"dashboard" do%>
-  
-  <div style ="position: absolute;width:350px;top: 180px;">
-    
+  <div style ="margin-left: 30px; width:250px;margin-top: 10px;">
+    <h3>Last Transactions</h3>
       <%= label_tag  'start Date'%>
       <%= text_field_tag 'sorting[start_date]',nil, :class => 'datepicker'%>
     
-    
       <%= label_tag 'end Date' %>
       <%= text_field_tag 'sorting[end_date]',nil, :class => 'datepicker'%>
-    
+    </div>
+   <div style ="float: right;margin-right:  130px;margin-top: -105px;">
+   <%=  submit_tag "OK",:class=>'btn-large btn-success', :id => 'my_button'%>
+   <%end%>
+   </div>
   </div>
- <div style ="position: absolute;float: right; top: 200px; right: 250px;">
- <%=  submit_tag "OK",:class=>'btn-large btn-success', :id => 'my_button'%>
- </div>
-<%end%>
   
   <%if !@sorted_customers.nil?%>
   <br><br><br><br><br>

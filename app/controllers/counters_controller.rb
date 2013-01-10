@@ -44,9 +44,13 @@ class CountersController < ApplicationController
     else
       @counter=Counter.find_by_id(session[:counter])
     end
-    @items = @counter.items
-    
-    render 'order_counter'
+    if @counter.nil?
+      flash[:error] = "Please select atleast one counter!"
+      redirect_to :controller => 'counters', :action => 'other_counter'
+    else
+      @items = @counter.items
+      render 'order_counter'
+    end
   end
   def final_order
     #render :text=>"ok"
