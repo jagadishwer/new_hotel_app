@@ -10,6 +10,8 @@
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  supplier_id        :integer
+#  payment_status     :integer
+#  user_id            :integer
 #
 
 class DeliveryItem < ActiveRecord::Base

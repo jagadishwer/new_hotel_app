@@ -1,5 +1,31 @@
 HotelApp::Application.routes.draw do
  
+  get "attendances/new"
+
+  get "attendances/edit"
+
+  get "attendances/index"
+
+  get "attendances/show"
+
+  get "branches/new"
+
+  get "branches/show"
+
+  get "branches/edit"
+
+  get "positions/new"
+
+  get "positions/show"
+
+  get "positions/edit"
+
+  get "employees/new"
+
+  get "employees/show"
+
+  get "employees/edit"
+
   get "paid_outs/new"
 
   get "paid_outs/show"

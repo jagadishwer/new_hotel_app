@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130107101938) do
+ActiveRecord::Schema.define(:version => 20130110105212) do
 
   create_table "abouts", :force => true do |t|
     t.string   "title"
@@ -62,6 +62,53 @@ ActiveRecord::Schema.define(:version => 20130107101938) do
   end
 
   add_index "attachments", ["attachable_id"], :name => "index_attachments_on_attachable_id"
+
+  create_table "attendances", :force => true do |t|
+    t.integer  "employee_id"
+    t.integer  "salary_id"
+    t.boolean  "day_1"
+    t.boolean  "day_2"
+    t.boolean  "day_3"
+    t.boolean  "day_4"
+    t.boolean  "day_5"
+    t.boolean  "day_6"
+    t.boolean  "day_7"
+    t.boolean  "day_8"
+    t.boolean  "day_9"
+    t.boolean  "day_10"
+    t.boolean  "day_11"
+    t.boolean  "day_12"
+    t.boolean  "day_13"
+    t.boolean  "day_14"
+    t.boolean  "day_15"
+    t.boolean  "day_16"
+    t.boolean  "day_17"
+    t.boolean  "day_18"
+    t.boolean  "day_19"
+    t.boolean  "day_20"
+    t.boolean  "day_21"
+    t.boolean  "day_22"
+    t.boolean  "day_23"
+    t.boolean  "day_24"
+    t.boolean  "day_25"
+    t.boolean  "day_26"
+    t.boolean  "day_27"
+    t.boolean  "day_28"
+    t.boolean  "day_29"
+    t.boolean  "day_30"
+    t.boolean  "day_31"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "total"
+    t.integer  "target_year"
+    t.integer  "target_month"
+  end
+
+  create_table "branches", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -114,6 +161,16 @@ ActiveRecord::Schema.define(:version => 20130107101938) do
     t.integer  "supplier_id"
     t.integer  "payment_status"
     t.integer  "user_id"
+  end
+
+  create_table "employees", :force => true do |t|
+    t.integer  "position_id"
+    t.integer  "branch_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "employee_no"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "galleries", :force => true do |t|
@@ -173,6 +230,12 @@ ActiveRecord::Schema.define(:version => 20130107101938) do
     t.integer  "user_id"
   end
 
+  create_table "positions", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "remaining_items", :force => true do |t|
     t.integer  "stock_list_item_id"
     t.integer  "stock_count_id"
@@ -193,6 +256,21 @@ ActiveRecord::Schema.define(:version => 20130107101938) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], :name => "index_roles_on_name"
+
+  create_table "salaries", :force => true do |t|
+    t.integer  "working_days"
+    t.float    "basic_salary"
+    t.float    "travel_expense"
+    t.float    "other_expense"
+    t.float    "total_payable"
+    t.float    "day_rate"
+    t.float    "other_decuction"
+    t.float    "net_payable"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.integer  "target_year"
+    t.integer  "target_month"
+  end
 
   create_table "stock_counts", :force => true do |t|
     t.float    "cost"

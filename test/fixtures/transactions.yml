@@ -10,6 +10,7 @@
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  balance             :float
+#  user_id             :integer
 #
 
 # == Schema Information
