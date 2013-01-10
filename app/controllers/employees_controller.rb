@@ -1,6 +1,6 @@
 class EmployeesController < ApplicationController
   def new
-    render :text=>"<script type='text/javascript'> alert('ok');</script>"
+    
     @employee=Employee.new
     @branches = Branch.all
     @positions=Position.all

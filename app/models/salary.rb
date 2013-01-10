@@ -18,5 +18,5 @@
 class Salary < ActiveRecord::Base
   # attr_accessible :title, :body
   has_one :employee, :through=>:attendances
-  has_many :attendances
+  has_one :attendances
 end

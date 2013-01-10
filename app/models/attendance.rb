@@ -44,4 +44,16 @@ class Attendance < ActiveRecord::Base
   # attr_accessible :title, :body
   belongs_to :employee
   belongs_to :salary
+  after_initialize :init
+  def init
+    #self.count ||= 15
+    self.target_year ||= Time.now.year
+    self.target_month ||= Time.now.month
+  end
+  def emp_name
+    (Employee.find(employee.id)).full_name
+  end
+  def emp_no
+    (Employee.find(employee.id)).employee_no
+  end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130109114505) do
+ActiveRecord::Schema.define(:version => 20130110105212) do
 
   create_table "abouts", :force => true do |t|
     t.string   "title"
@@ -97,8 +97,11 @@ ActiveRecord::Schema.define(:version => 20130109114505) do
     t.boolean  "day_29"
     t.boolean  "day_30"
     t.boolean  "day_31"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "total"
+    t.integer  "target_year"
+    t.integer  "target_month"
   end
 
   create_table "branches", :force => true do |t|
@@ -265,6 +268,8 @@ ActiveRecord::Schema.define(:version => 20130109114505) do
     t.float    "net_payable"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.integer  "target_year"
+    t.integer  "target_month"
   end
 
   create_table "stock_counts", :force => true do |t|
