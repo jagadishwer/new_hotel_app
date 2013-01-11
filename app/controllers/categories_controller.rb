@@ -12,7 +12,7 @@ class CategoriesController < ApplicationController
         format.json{}
         format.xml{}
       else
-        format.html {redirect_to  :action=>'show'}
+        format.html {render 'new'}
       end
     end
     

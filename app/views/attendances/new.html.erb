@@ -11,7 +11,7 @@
   });
 </script>
 
-<h1>Attendances#new</h1>
+<h1>Attendance for <%=Date.today.month%> / <%= Date.today.year %> </h1>
 <%= form_for @attendance, {:url=>'/attendances/create' } do |f| %>
 <%= f.select :employee_id, @employees.collect { |p| [ p.first_name, p.id ] }, { :prompt => "Choose Employee" } %>
 

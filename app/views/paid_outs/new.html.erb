@@ -1,5 +1,5 @@
 <style>
-  .my_bn{
+  .my_btn{
     height: 70px;
     width: 70px;
     
@@ -7,11 +7,11 @@
 </style>
 
 <%= form_for @paid_out, {:url=>"/paid_outs/create"} do |f| %>
-  <%= f.label :amount %>
-  <%= f.text_field :amount %></br>
+  <%= f.label :amount %>    
+  <%= f.text_field :amount%></br>
   <%= f.label :to_whom %>
   <%= f.text_field :to %></br>
-    <%= f.label :reason %>
+  <%= f.label :reason %>
   <%= f.text_area :reason, :cols => 20, :rows => 10 %></br>
   <%= f.submit "    Pay    ", :class => 'btn-primary btn-large my_btn' %>
 <% end %>

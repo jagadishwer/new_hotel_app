@@ -316,13 +316,24 @@ authorize! :billing, [@orders, @customers]
   def inventory
     @stcs=[]
     if params.key?(:sorting)
-      @sd = Date.parse(params[:sorting][:start_date].split('-').reverse!.join('-'))
-      @ed = Date.parse(params[:sorting][:end_date].split('-').reverse!.join('-'))
-      #@sd=Date.parse( params[:sorting][:start_date].to_a.sort.collect{|c| c[1]}.join("-") )
-      #@ed=Date.parse( params[:sorting][:end_date].to_a.sort.collect{|c| c[1]}.join("-") )
+      if params[:sorting][:start_date].empty? or params[:sorting][:end_date].empty?
+        flash[:error]= 'Dates should not be empty!'
+        redirect_to :controller => 'hotelsessions', :action => 'inventory'
+      else
+      @sd = Date.parse( params[:sorting][:start_date].split('-').reverse!.join('-'))
+      @ed = Date.parse( params[:sorting][:end_date].split('-').reverse!.join('-'))
+      if @sd > @ed
+        flash[:error] = 'Oops! Start Date should not be erlier than end date. Please try again!'
+      else
+#      @sd = Date.parse(params[:sorting][:start_date].split('-').reverse!.join('-'))
+#      @ed = Date.parse(params[:sorting][:end_date].split('-').reverse!.join('-'))
+#      #@sd=Date.parse( params[:sorting][:start_date].to_a.sort.collect{|c| c[1]}.join("-") )
+#      #@ed=Date.parse( params[:sorting][:end_date].to_a.sort.collect{|c| c[1]}.join("-") )
       @sorted_customers=Customer.find(:all,:order=>'updated_at DESC',:conditions=>{:status=>2,:date_of_transcation=>[@sd..@ed]})
       @stcs=StockCount.find(:all,:conditions=>{:created_at=>(@sd..@ed)})
-      #puts "----1--"
+      end
+      end
+          #puts "----1--"
       #puts @stcs.inspect
       # puts "----1--"
       if !@stcs.empty?
