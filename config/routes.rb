@@ -1,5 +1,15 @@
 HotelApp::Application.routes.draw do
  
+  get "salaries/new"
+
+  get "salaries/edit"
+
+  get "salaries/index"
+
+  get "new/edit"
+
+  get "new/index"
+
   get "attendances/new"
 
   get "attendances/edit"

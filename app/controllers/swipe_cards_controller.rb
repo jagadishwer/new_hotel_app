@@ -40,7 +40,7 @@ authorize_resource
   end
   def show
 #@cards = SwipeCard.all
-raise CanCan::AccessDenied unless current_user.has_role? :admin||:manager||:moderator
+raise CanCan::AccessDenied unless current_user.has_role? :admin or current_user.has_role?:manager or current_user.has_role?:moderator
 
 @cards=SwipeCard.search(params[:search]).order(sort_column + " " + sort_direction)
 

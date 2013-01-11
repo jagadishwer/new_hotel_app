@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130110105212) do
+ActiveRecord::Schema.define(:version => 20130110134431) do
 
   create_table "abouts", :force => true do |t|
     t.string   "title"
@@ -270,6 +270,7 @@ ActiveRecord::Schema.define(:version => 20130110105212) do
     t.datetime "updated_at",      :null => false
     t.integer  "target_year"
     t.integer  "target_month"
+    t.integer  "employee_id"
   end
 
   create_table "stock_counts", :force => true do |t|
@@ -314,7 +315,7 @@ ActiveRecord::Schema.define(:version => 20130110105212) do
   create_table "transactions", :force => true do |t|
     t.integer  "swipe_card_id"
     t.string   "counter_id"
-    t.float    "cost"
+    t.string   "cost"
     t.integer  "type_of_transaction"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false

@@ -13,10 +13,18 @@
 #  net_payable     :float
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  target_year     :integer
+#  target_month    :integer
 #
 
 class Salary < ActiveRecord::Base
   # attr_accessible :title, :body
-  has_one :employee, :through=>:attendances
+  belongs_to :employee
   has_one :attendances
+  def emp_name
+    (Employee.find(employee.id)).full_name
+  end
+  def emp_no
+    (Employee.find(employee.id)).employee_no
+  end
 end

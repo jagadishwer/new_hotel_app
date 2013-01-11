@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
 
 
+
 rescue_from CanCan::AccessDenied do |exception|
   flash[:error] = "Access denied."
   destroy_user_session_path

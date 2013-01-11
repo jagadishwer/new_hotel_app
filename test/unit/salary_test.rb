@@ -13,6 +13,8 @@
 #  net_payable     :float
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  target_year     :integer
+#  target_month    :integer
 #
 
 require 'test_helper'
