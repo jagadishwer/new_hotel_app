@@ -12,15 +12,15 @@ def create
     @stock_list_items.each do |s|
       io=InternalOrder.new(:stock_list_item_id=>s.id,:quantity=>params[s.name][:quantity],:user_id=>current_user.id,:counter_id=>session[:kitchen])
      if io.save
-      @count=+1
+      @count+=1
 
      end
 
-       flash[:notice]="Order for #{@count} item placed"
-       redirect_to :action=>'kitchen' , :controller=>'kitchens'
+      
     end
 
-
+ flash[:notice]="Order for #{@count} item placed"
+       redirect_to :action=>'show' , :controller=>'kitchens'
     
   end
 
