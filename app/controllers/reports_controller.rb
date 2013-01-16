@@ -5,4 +5,8 @@ class ReportsController < ApplicationController
     @suppliers=Supplier.all
 
   end
+  def internal_orders
+ @internal_orders =  InternalOrder.all
+ render :layout=>false
+end
 end

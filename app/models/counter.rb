@@ -16,4 +16,5 @@ class Counter < ActiveRecord::Base
   has_many :items
   has_many :orders
   has_many :customers
+  has_many :internal_orders
 end

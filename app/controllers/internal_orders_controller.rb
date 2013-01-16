@@ -24,6 +24,12 @@ def create
     
   end
 
+
+
+
   def show
+
+   @internal_order = InternalOrder.find_by_counter_id(params[:counter_id])
+
   end
 end
