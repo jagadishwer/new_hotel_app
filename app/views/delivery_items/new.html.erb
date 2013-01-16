@@ -1,9 +1,10 @@
-<div class="page-header"style="background-color:#999999;">
-    <h1 style="text-align:left;">Delivered Item Entry</h1>
-  </div>
+<div class="page-header"style="margin-top: 10px;">
+    <h1 style="text-align:left;color:whitesmoke;font-variant:small-caps;font-family:fantasy;margin-left:20px;">Delivered Item Entry</h1>
+</div>
 <%= nested_form_for @stock_list_item,:url=>'/delivery_items/create',:html => { :multipart => true } do |f| %>
-  <div style="width:800px;height:500px;background-color:white;margin:auto;border:3px solid #333333;overflow:scroll;">
-<table class="table table-hover"style="border:1px solid rgb(221,221,221);margin:auto; ">
+<%= render "/shared/error_messages", :target => f.object %>
+<div style="width:800px;height:500px;background-color:white;margin:auto;border:0px solid #333333;overflow:scroll;">
+<table class="table table-hover"style="border:10px solid rgb(221,221,221);margin:auto;border-radius:20px 0px 0px 0px;">
   <tr style="background-color:#ffcccc">
     <th> NAME</th> <th>MRP per Unit</th><th>UNITS</th><th>SUPPLIER</th>
   </tr>
@@ -13,9 +14,7 @@
     <td><%=text_field_tag "#{s.name}[mrp]"%></td>
     <td><%=text_field_tag "#{s.name}[quantity]"%></td>
      <td><%=select_tag"#{s.name}[supplier_id]", options_from_collection_for_select(@suppliers, :id,:name),:prompt => "Select Supplier" %></td>
-    
   </tr>
-
 <%end%>
 </table>
 </div>
@@ -33,13 +32,12 @@
 <%# end %>
 <%#*<p><%= f.link_to_add "Add a task", :delivery_items%</p>%>
 
-      
 
  
   
     <%#*</tr></table>%>
 <%#*</div>%>
-<div style="width:800px;height:60px;background-color:#999999;margin:auto;border:3px solid black;border-top:none;">
+<div style="width:800px;height:60px;background-color:#999999;margin:auto;border:0px solid black;border-top:none;">
   <%=f.submit "Submit", :class=>"btn-small btn-primary" ,:style=>"float:right;margin-right:30px;margin-top:1px;margin-bottom:1px;height:55px;width:120px;"%>
 </div>
 <%end%>
