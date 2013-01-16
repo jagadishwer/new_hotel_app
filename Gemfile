@@ -10,6 +10,7 @@ gem 'activeadmin'
 gem 'mysql2'
 gem 'devise'
 gem 'anjlab-bootstrap-rails', '>= 2.1', :require => 'bootstrap-rails'
+gem 'dynamic_form'
 
 #gem 'twitter-bootstrap-rails'
 gem 'googlecharts'

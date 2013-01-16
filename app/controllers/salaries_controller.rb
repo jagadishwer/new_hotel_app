@@ -1,4 +1,6 @@
 class SalariesController < ApplicationController
+  before_filter :authenticate_user!
+  authorize_resource
   def new
     @employees=Employee.all
     @salary=Salary.new
@@ -44,5 +46,9 @@ end
     puts "========================================"
     puts @a
     render :text=>@a
+  end
+  def pay_slips
+    @salaries=Salary.find(:all,:conditions=>{:target_year=>Time.now.year,:target_month=>Time.now.month})
+    render :layout=>'others'
   end
 end

@@ -1,13 +1,13 @@
+
 <style>
   #sbtn{
     height: 40px;
     width: 80px;
 }
 </style>
-<div class="page-header"style="background-color:#999999;">
-<h1 style="text-align:left;">Sign in</h1>
-  </div>
 
+<div style="margin-left:55%;margin-top:3%; width:200px;border:5px solid #999999;padding: 100px;border-radius:300px 50px;background-color:#DAEBA9;">
+  <h1 style="text-align:center;font-family:fantasy;">LogIn</h1>
 <%= form_for(resource ,:as => resource_name, :url => session_path(resource_name)) do |f| %>
 <div class="control-group">
 <%= f.label :email,:class=>"control-label" %>
@@ -30,6 +30,6 @@
   <div><%= f.submit "Sign in", :class=>'btn btn-success', :id => 'sbtn'%></div>
 </div>
 <% end %>
-
+</div>
 
 <%#= render "devise/shared/links" %>

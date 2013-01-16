@@ -1,18 +1,22 @@
 class EmployeesController < ApplicationController
   def new
-    
     @employee=Employee.new
     @branches = Branch.all
     @positions=Position.all
   end
 
   def create
-    if Employee.create(params[:employee])
+    @employee = Employee.new(params[:employee])
+    if @employee.save
        flash[:notice]="Sucsessfully created"
+       redirect_to :action=>'show'
     else
-      flash[:error]="unSucsessfully created"
+#      flash[:error]="unSucsessfully created"
+@branches = Branch.all
+    @positions=Position.all
+       render 'new', :rel=>"modal"
     end
-    redirect_to :action=>'show'
+    
   end
 
   def edit

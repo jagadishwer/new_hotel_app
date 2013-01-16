@@ -11,5 +11,7 @@
 class Category < ActiveRecord::Base
    resourcify
   attr_accessible :name
+  validates :name, :presence => true
+  validates :name, :uniqueness => true
   has_many :items
 end

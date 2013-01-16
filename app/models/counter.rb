@@ -9,8 +9,10 @@
 #
 
 class Counter < ActiveRecord::Base
-  # attr_accessible :title, :body
-   resourcify
+  attr_accessible :name
+  validates :name, :presence => true
+  validates :name, :uniqueness => true
+  resourcify
   has_many :items
   has_many :orders
   has_many :customers

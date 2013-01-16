@@ -13,7 +13,8 @@
 #
 
 class Employee < ActiveRecord::Base
-  # attr_accessible :title, :body
+  attr_accessible :position_id, :branch_id, :first_name, :last_name, :employee_no
+  validates :first_name, :last_name, :position_id, :branch_id, :presence => true
   belongs_to :position
   belongs_to :branch
   has_many :salaries, :through=>:attendances

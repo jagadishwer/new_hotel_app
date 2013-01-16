@@ -34,7 +34,7 @@ authorize_resource
       flash[:notice] = "Swipe card created successfully!"
       redirect_to :action=>'main_counter', :controller=>'counters'
     else
-      redirect_to :action=>'new'
+      render 'new'
     end
 
   end

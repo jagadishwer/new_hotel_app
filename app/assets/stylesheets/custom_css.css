@@ -22,7 +22,7 @@ background-image: -moz-linear-gradient(center top , rgb(238, 95, 91), rgb(189, 5
 background-repeat: repeat-x;
 border-color: rgb(189, 54, 47) rgb(189, 54, 47) rgb(128, 36, 32);
 padding: 40px;
-padding-left: 60px;
+padding-left: 50px;
 padding-right: 80px;
 font-size: 17.5px;
 border-radius: 6px 6px 6px 6px;
@@ -35,7 +35,7 @@ margin-left: 30px;
   margin-left: 40px;
   margin-right: 40px;
   margin-bottom: 20px;
-  border: 2px solid;
+  border: 0px solid;
   height: 600px;
 }
 .edit_button{
@@ -58,4 +58,12 @@ margin-left: 30px;
 }
 #card_no{
   height: 30px;
+}
+
+#error_explanation {
+  color: #f00;
+  ul{
+    list-style: none;
+    margin: 0 0 18px 0;
+  }
 }

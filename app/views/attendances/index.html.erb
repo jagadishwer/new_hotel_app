@@ -1,5 +1,8 @@
 
-<h1>Attendances#index</h1>
+
+
+<h1>Attendance for <%= Time.now.month%> / <%= Time.now.year%></h1>
+ 
 <div style="width:800px;height:500px;background-color:white;margin:auto;border:3px solid #333333;overflow:scroll;">
 <table class="table table-striped table-bordered">
   <tr >
@@ -24,4 +27,5 @@
 </table>
     <br/>
     <%=link_to "Add Employee Attendance", {:controller=>'attendances',:action=>'new'},:class=>"btn-large btn-success"%>
+ 
 </div>

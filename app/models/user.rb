@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,:time_zone,:tax, :role_ids
+  validates  :password, :time_zone, :presence => true
   has_many :delivery_items
   has_many :orderlists
   has_many :paid_outs

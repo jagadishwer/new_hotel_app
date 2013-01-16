@@ -1,10 +1,14 @@
 <%#*used custom_css file for css%>
-<div class="jheading">Settings</div>
-<div class="settings_buttons">
+<div class="jheading" style ="float: none;padding:30px;width: 100%;padding-left: 40px;">Settings</div>
+<div class="settings_buttons" style ="width: 100%">
 <%= link_to "Users", '/manage_users/index', :class => "jbtn"%>
+  <%= link_to "Employees", '/employees/show', :class => "jbtn"%>
+  <%= link_to "Attendance", '/attendances/index', :class => "jbtn"%>
+  <%= link_to "Payroll", "/salaries/index", :class => "jbtn"%>
 <%#*<li><%= link_to "Manage Roles", '/roles/show', :class => "btn-small btn-primary"% </li>%>
 <%=link_to "Settings",edit_user_registration_path ,:class=>"jbtn"%>
 </div>
+<%#*Required AJAX code here..%>
 <div class ="main_div">
-  <p>Main Div</p>
+  <p></p>
 </div>

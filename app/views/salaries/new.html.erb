@@ -96,7 +96,7 @@ function getwork_days()
 
 </script>
 
-<h1>Salaries#new</h1>
+<h1>Salary for <%= Time.now.month%> / <%= Time.now.year%></h1>
 <%= form_for @salary, {:url=>'/salaries/create'} do |f| %>
 <div class="form-inputs" >
 <div class="row" style="margin-left:100px">
