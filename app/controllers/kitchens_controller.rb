@@ -43,4 +43,8 @@ class KitchensController < ApplicationController
     @counters=Counter.where("name!='main_counter'")
      #authorize! :write, Counter
   end
+  def stock
+
+
+  end
 end

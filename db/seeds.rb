@@ -5,4 +5,5 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-Counter.create(:name=>'main_counter')
+Counter.create!(:name=>'Bakery')
+Counter.create!(:name=>'Cocktails')
