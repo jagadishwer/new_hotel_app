@@ -3,8 +3,6 @@ class HotelsessionsController < ApplicationController
   before_filter :authenticate_user!
   layout 'show', :only=>['show','billing']
   #before_filter :authenticate_user!,:only=>['show','billing','dashboard']
-  
-  
   require 'gchart'
 
   #api

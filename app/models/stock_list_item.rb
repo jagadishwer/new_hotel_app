@@ -11,6 +11,7 @@
 class StockListItem < ActiveRecord::Base
    resourcify
  attr_accessible :name
+ validates :name, :presence => true, :uniqueness => true
  #
  #attr_accessible :delivery_items_attributes
   has_many :stock_counts, :through=>:remaining_items

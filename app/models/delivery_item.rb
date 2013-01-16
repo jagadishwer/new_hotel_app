@@ -24,7 +24,9 @@ class DeliveryItem < ActiveRecord::Base
   belongs_to :stock_list_item
   belongs_to :supplier
   belongs_to :users
-
+validates :stock_list_item_id, :presence => true
+validates :mrp, :presence => true
+validates :quantity, :presence => true
   #after_initialize :init
   def item_name=(x)
     @s= StockListItem.create(:name=>x)

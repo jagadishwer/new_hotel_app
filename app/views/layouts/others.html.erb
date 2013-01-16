@@ -34,11 +34,9 @@
 <% if user_signed_in? %>
     <li style="float:right;"> <%= link_to "Sign out", destroy_user_session_path, :method => :delete,:class=>"btn-large btn-danger" %></li>
   <%end%>
-      </ul>
-
- <%= render 'layouts/messages' %>
+ </ul>
+<%= render 'layouts/messages' %>
 <%= yield %>
-
 </body>
 </html>
 
