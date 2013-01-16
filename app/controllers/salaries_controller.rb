@@ -1,6 +1,7 @@
 class SalariesController < ApplicationController
   before_filter :authenticate_user!
   authorize_resource
+  #layout 'others'
   def new
     @employees=Employee.all
     @salary=Salary.new
