@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130110134431) do
+ActiveRecord::Schema.define(:version => 20130116094627) do
 
   create_table "abouts", :force => true do |t|
     t.string   "title"
@@ -189,6 +189,16 @@ ActiveRecord::Schema.define(:version => 20130110134431) do
   end
 
   add_index "images", ["imagable_id"], :name => "index_images_on_imagable_id"
+
+  create_table "internal_orders", :force => true do |t|
+    t.integer  "counter_id"
+    t.integer  "stock_list_item_id"
+    t.integer  "quantity"
+    t.integer  "status"
+    t.integer  "user_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
 
   create_table "items", :force => true do |t|
     t.string  "item_name"

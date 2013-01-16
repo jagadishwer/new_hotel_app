@@ -33,7 +33,10 @@ class CountersController < ApplicationController
   end
   def other_counter
     session[:counter]=nil
-    @counters=Counter.where("name!='main_counter'")
+    @counters=Counter.all
+    @counters.reject!{|x| ['main_counter','Cocktails'].include?x.name}
+    
+
   end
 
   
