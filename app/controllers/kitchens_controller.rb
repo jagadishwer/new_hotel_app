@@ -1,6 +1,6 @@
 class KitchensController < ApplicationController
   before_filter :kitchen_authorize
-  layout 'show', :except => 'kitchen'
+  layout 'show'
   #authorize_resource :class=>false
   def show
     if session[:kitchen].nil?
