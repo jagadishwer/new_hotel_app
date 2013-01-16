@@ -1,8 +1,7 @@
 class KitchensController < ApplicationController
-   before_filter :kitchen_authorize
-  layout 'show'
- 
-   #authorize_resource :class=>false
+  before_filter :kitchen_authorize
+  layout 'show', :except => 'kitchen'
+  #authorize_resource :class=>false
   def show
     if session[:kitchen].nil?
     @counter = Counter.find(params[:counter][:counter_id])
@@ -44,7 +43,5 @@ class KitchensController < ApplicationController
      #authorize! :write, Counter
   end
   def stock
-
-
   end
 end

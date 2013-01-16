@@ -38,11 +38,11 @@
 </style>
 <body class="main_body">
   <div style="background-color:black;height:150px;margin-top: -1.7%;">
-    <h3 style="text-align:left;line-height: 220px;color:wheat;font-variant:small-caps;font-family:fantasy;margin-left:20px;font-size: 35px;">Brilliance-works Hotel App</h3>
+    <h3 style="text-align:left;line-height: 220px;color:whitesmoke;font-variant:small-caps;font-family:fantasy;margin-left:20px;font-size: 35px;">Brilliance-works Hotel App</h3>
   </div>
   <div class="container-fluid" style="height:auto;">
-    <div class="row-fluid" style="height:auto;margin-top: 10px;">
-      <div class="span2" style="height:auto; border-radius:10px; background-color: #DAEBA9;">
+    <div class="row-fluid" style="height:auto;margin-top: 30px;">
+      <div class="span2" style="height:auto; border-radius:10px; background-color: whitesmoke;margin-top: 15px;">
       <!--Sidebar content-->
       <%if user_signed_in?%>
       <ul class="nav nav-pills nav-stacked" style="margin-top:0px;padding:10px">
@@ -52,12 +52,12 @@
         <li><%=link_to "Suppliers", '/suppliers/show',:class=>'btn-large btn-info'%></li>
         <li><%#=link_to "Tax", '/taxes/show',:class=>'btn-large btn-success'%></li>
         <li><%=link_to "Menu",'/hotelsessions/menu',:class=>'btn-large btn-success'%></li>
-        <li><%=link_to "Counter",'/counters/counters',:class=>"btn-large btn-info"%></li>
+        <li><%=link_to "Counters",'/counters/counters',:class=>"btn-large btn-info"%></li>
         <li>
           <%#=link_to "Main Counter",'/counters/main_counter',:class=>"btn-small btn-info" %>
           <%#=link_to "Other Counter",'/counters/other_counter',:class=>"btn-small btn-info" %>
         </li>
-        <li><%=link_to "Kitchen",'/kitchens/kitchen',:class=>"btn-large btn-success"%></li>
+        <li><%=link_to "Kitchens",'/kitchens/kitchen',:class=>"btn-large btn-success"%></li>
         <li><%#=link_to "Items",'/items/show',:class=>'btn-large btn-info'%></li>
         <%#=link_to "Add Tax", {:controller=>'tables',:action=>'new'},:class=>'btn btn-warning'%>
         <li><%=link_to "Reports",'/reports/show',:class=>"btn-large btn-success"%></li>
