@@ -24,5 +24,5 @@ class StockListItem < ActiveRecord::Base
   has_many :internal_orders
   accepts_nested_attributes_for :delivery_items, :allow_destroy => true
 
-  
+
 end

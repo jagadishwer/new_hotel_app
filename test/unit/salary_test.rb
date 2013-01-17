@@ -15,6 +15,7 @@
 #  updated_at      :datetime         not null
 #  target_year     :integer
 #  target_month    :integer
+#  employee_id     :integer
 #
 
 require 'test_helper'
