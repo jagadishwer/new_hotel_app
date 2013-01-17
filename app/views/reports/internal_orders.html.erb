@@ -10,7 +10,7 @@
 
     <th style="background-color:rgb(0, 108, 204);color: white;">Item </th>
      <th style="background-color:rgb(0, 108, 204);color: white;">Quantity</th>
-     <th style="background-color:rgb(0, 108, 204);color: white;"></th>
+     <th style="background-color:rgb(0, 108, 204);color: white;"><button type="button" class="btn btn-success" onclick="confirm_all()">Deliver All</button></th>
 
 
 
@@ -22,7 +22,7 @@
     <td><%=a.counter_name%></td>
     <td><%=a.item_name%></td>
     <td><%=a.quantity%></td>
-    <td><button type="button" class="btn-mini btn-danger" onclick="cancel1(<%=a.id%>)">delivered</button></td>
+    <td><button type="button" class="btn-mini btn-danger" onclick="confirm(<%=a.id%>)">Delivered</button></td>
   </tr>
 
 <%end%>

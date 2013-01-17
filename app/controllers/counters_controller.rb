@@ -34,7 +34,7 @@ class CountersController < ApplicationController
   def other_counter
     session[:counter]=nil
     @counters=Counter.all
-    @counters.reject!{|x| ['main_counter','Cocktails'].include?x.name}
+    #@counters.reject!{|x| ['main_counter','Cocktails'].include?x.name}
     
 
   end
@@ -55,6 +55,30 @@ class CountersController < ApplicationController
       render 'order_counter'
     end
   end
+
+
+
+  def indian
+
+  end
+
+  def cocktail
+
+  end
+
+
+
+  def bakery
+
+  end
+
+
+
+
+
+
+
+
   def final_order
     #render :text=>"ok"
      @order_lists=Orderlist.find(:all,:conditions=>{:counter_id=>session[:counter],:order_id=>nil})

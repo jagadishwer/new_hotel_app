@@ -21,7 +21,7 @@
 
     <th style="background-color:rgb(0, 108, 204);color: white;"><%=link_to "Print All Pay Slip", {:action=>'pay_slips'}, :class=>"btn btn-success" %></th>
   </tr>
-
+<%@sum=0%>
 <%@salaries.each do |a|%>
 
   <tr>
@@ -32,8 +32,9 @@
     <td><%=link_to "edit", {:controller=>'salaries',:action=>'edit',:id=>a.id},:class=>"btn-small btn-inverse"%></td>
     <td><%=link_to "view", {:controller=>'salaries',:action=>'show',:id=>a.id},:class=>"btn-small btn-warning"%></td>
   </tr>
-
+<%@sum+=a.net_payable%>
 <%end%>
+  <tr><td></td><td>Total Payable :</td> <td></td> <td><%=@sum%></td> <td></td> <td></td>   </tr>
 </table>
     <br/>
     <%=link_to "Add Employee Salary", {:controller=>'salaries',:action=>'new'},:class=>"btn-large btn-success"%>

@@ -71,19 +71,25 @@
         <tr style="background-color:blanchedalmond; "><td>Customer count</td><%(1..@stcs_size-1).each do |x|%>
             <td> <%=Customer.count(:conditions=>{:date_of_transcation=>[@stcs[x-1].created_at..@stcs[x].created_at]})%></td>
           <%end%></tr>
-        <tr style="background-color:blanchedalmond; "><td>NET SALES</td><%(1..@stcs_size-1).each do |x|%>
+        <tr style="background-color:blanchedalmond; "><td>NET SALES (Rs)</td><%(1..@stcs_size-1).each do |x|%>
             <td><%sum=Customer.sum(:total,:conditions=>{:status=>2,:date_of_transcation=>[@stcs[x-1].created_at..@stcs[x].created_at]})%>
             <%=sum%><%@a<<sum;@l<<@stcs[x].created_at.to_date%></td>
           <%end%>  </tr>
        
-        <tr style="background-color:blanchedalmond; "><td>Payments To Suppliers</td><%(1..@stcs_size-1).each do |x|%>
+        <tr style="background-color:blanchedalmond; "><td>Payments To Suppliers (Rs)</td><%(1..@stcs_size-1).each do |x|%>
             <td><%=DeliveryItem.sum(:mrp, :conditions=>{:payment_status=>1,:updated_at=>[@stcs[x-1].created_at..@stcs[x].created_at]})%></td>
           <%end%>  </tr>
-        <tr style="background-color:blanchedalmond; "><td>Other Expenditures</td><%(1..@stcs_size-1).each do |x|%>
+
+        <tr style="background-color:blanchedalmond; "><td>Salaries (Rs)</td><%(1..@stcs_size-1).each do |x|%>
+            <td><%=Salary.sum(:net_payable,:conditions=>{:created_at=>[@stcs[x-1].created_at..@stcs[x].created_at]})%></td>
+          <%end%>  </tr>
+
+        <tr style="background-color:blanchedalmond; "><td>Other Expenditures (Rs)</td><%(1..@stcs_size-1).each do |x|%>
             <td><%=PaidOut.sum(:amount,:conditions=>{:created_at=>[@stcs[x-1].created_at..@stcs[x].created_at]})%></td>
           <%end%>  </tr>
-        <tr style="background-color:blanchedalmond; "><td>BALANCE AMOUNT</td><%(1..@stcs_size-1).each do |x|%>
-            <td><%=Customer.sum(:total,:conditions=>{:status=>2,:date_of_transcation=>[@stcs[x-1].created_at..@stcs[x].created_at]})-DeliveryItem.sum(:mrp, :conditions=>{:payment_status=>1,:updated_at=>[@stcs[x-1].created_at..@stcs[x].created_at]})-PaidOut.sum(:amount,:conditions=>{:created_at=>[@stcs[x-1].created_at..@stcs[x].created_at]})%></td>
+
+        <tr style="background-color:blanchedalmond; "><td>BALANCE AMOUNT (Rs)</td><%(1..@stcs_size-1).each do |x|%>
+            <td><%=Customer.sum(:total,:conditions=>{:status=>2,:date_of_transcation=>[@stcs[x-1].created_at..@stcs[x].created_at]})-DeliveryItem.sum(:mrp, :conditions=>{:payment_status=>1,:updated_at=>[@stcs[x-1].created_at..@stcs[x].created_at]})-PaidOut.sum(:amount,:conditions=>{:created_at=>[@stcs[x-1].created_at..@stcs[x].created_at]})-Salary.sum(:net_payable,:conditions=>{:created_at=>[@stcs[x-1].created_at..@stcs[x].created_at]})%></td>
           <%end%>  </tr>
          <tr><td>RAW MATIRIAL PURCHASED</td><%(1..@stcs_size-1).each do |x|%>
             <td><%=Delivery.sum(:cost,:conditions=>{:created_at=>[@stcs[x-1].created_at..@stcs[x].created_at]})%></td>
@@ -93,10 +99,10 @@
           <%end%>  </tr>
 
 
-        <tr><td>RAW MATIRIAL AVAILABLE</td><%(1..@stcs_size-1).each do |x|%>
+        <tr><td>RAW MATIRIAL AVAILABLE (Rs)</td><%(1..@stcs_size-1).each do |x|%>
             <td><%=@stcs[x].cost%></td>
           <%end%>  </tr>
-        <tr><td>RAW MATIRIAL SPENT</td><td><%rs=@cost_brought_forward+(Delivery.sum(:cost,:conditions=>{:created_at=>[@stcs[0].created_at..@stcs[1].created_at]}))-@stcs[1].cost%>
+        <tr><td>RAW MATIRIAL SPENT (Rs)</td><td><%rs=@cost_brought_forward+(Delivery.sum(:cost,:conditions=>{:created_at=>[@stcs[0].created_at..@stcs[1].created_at]}))-@stcs[1].cost%>
           <%=rs%></td>
          <%@r<<rs%>
   <%(2..@stcs_size-1).each do |x|%>
@@ -109,7 +115,7 @@
         <tr style="background-color: rgb(221, 221, 221);"><td style="text-align: center;font-weight:bold">SALES REPORT</td></tr>
         <%(Item.all).each do |i|%>
           <tr><td><%=i.item_name%></td><%(1..@stcs_size-1).each do |x|%>
-              <td><%=i.orderlists.sum(:quantity,:conditions=>{:created_at=>[@stcs[x-1].created_at..@stcs[x].created_at]})%></td><%end%></tr>
+              <td><%=i.orderlists.sum(:quantity,:conditions=>{:created_at=>[@stcs[x-1].created_at..@stcs[x].created_at]})%> </td><%end%></tr>
         <%end%>
 
         <tr style="background-color: rgb(221, 221, 221);"><td style="text-align: center;font-weight:bold">STOCK IN REPORT </td></tr>
