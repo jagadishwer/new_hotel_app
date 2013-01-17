@@ -21,13 +21,13 @@ background-color: rgb(218, 78, 73);
 background-image: -moz-linear-gradient(center top , rgb(238, 95, 91), rgb(189, 54, 47));
 background-repeat: repeat-x;
 border-color: rgb(189, 54, 47) rgb(189, 54, 47) rgb(128, 36, 32);
-padding: 40px;
-padding-left: 50px;
-padding-right: 80px;
+padding: 30px;
+padding-left: 40px;
+padding-right: 55px;
 font-size: 17.5px;
-border-radius: 6px 6px 6px 6px;
-line-height: 120px;
-margin-left: 30px;
+border-radius: 5px 5px 5px 5px;
+line-height: 500px;
+margin-left: 20px;
 
 }
 .main_div{

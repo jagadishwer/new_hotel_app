@@ -16,17 +16,16 @@
 
 class DeliveryItem < ActiveRecord::Base
   # attr_accessible :title, :body
-
-   resourcify
+  resourcify
   attr_accessible :stock_list_item,:stock_list_item_id, :mrp, :quantity,:supplier_id,:payment_status, :user_id
   #attr_accessor :item_name
   belongs_to :delivery
   belongs_to :stock_list_item
   belongs_to :supplier
   belongs_to :users
-validates :stock_list_item_id, :presence => true
-validates :mrp, :presence => true
-validates :quantity, :presence => true
+  validates :stock_list_item_id, :presence => true
+  validates :mrp, :presence => true
+  validates :quantity, :presence => true
   #after_initialize :init
   def item_name=(x)
     @s= StockListItem.create(:name=>x)
@@ -40,6 +39,4 @@ validates :quantity, :presence => true
 #    self.user_id ||= current_user.id
 #    self.payment_status ||= 0
 #  end
-
-  
 end

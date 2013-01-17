@@ -13,8 +13,8 @@
   <tr>
     <td><%@i+=1%><%=@i%></td>
     <td><%=s.name%></td>
-    <td><%=s.created_at%></td>
-    <td><%=link_to_modal "edit", {:controller=>'categories',:action=>'edit',:id=>s.id},:class=>"btn-small btn-primary"%></td>
+    <td><%=s.created_at.to_date%></td>
+    <td><%=link_to_modal "Edit", {:controller=>'categories',:action=>'edit',:id=>s.id},:class=>"btn-small btn-primary"%></td>
   </tr>
 
 <%end%>

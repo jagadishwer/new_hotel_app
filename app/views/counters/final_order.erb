@@ -9,9 +9,13 @@ $(document).ready(function(){
     layout: $.keypad.qwertyLayout});
 });
 </script>
-<table class="table table-bordered">
+<table class="table table-striped table-bordered">
         <tr style="background-color:#ffcccc; ">
-          <td>Item</td><td>Quantity </td><td>Unit Price</td><td>Total Price</td><td></td>
+          <th id="table_header">Item</th>
+          <th id="table_header">Quantity </th>
+          <th id="table_header">Unit Price (Rs)</th>
+          <th id="table_header">Total Price (Rs)</th>
+          <th id="table_header"></th>
         </tr>
         <%@sum=0%>
         <%if !@order_lists.empty?%>

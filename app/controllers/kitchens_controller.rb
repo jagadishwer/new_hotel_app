@@ -2,6 +2,39 @@ class KitchensController < ApplicationController
   before_filter :kitchen_authorize
   layout 'show'
   #authorize_resource :class=>false
+  def new
+    @kitchen = Kitchen.new
+  end
+  def create
+    @kitchen = Kitchen.new(params[:kitchen])
+    if @kitchen.save
+      flash[:success]="Kitchen created successfully!"
+      redirect_to :controller => 'kitchens', :action => 'display'
+    end
+  end
+  def display
+    @kitchens = Kitchen.all
+  end
+  def edit
+    @kitchen = Kitchen.find(params[:id])
+  end
+  def update
+    @kitchen = Kitchen.find(params[:kitchen][:id])
+    if @kitchen.update_attributes(params[:kitchen])
+      flash[:success]='Kitchen updated successfully!'
+      redirect_to :action => 'display'
+    else
+      render 'new'
+    end
+  end
+  def destroy
+    @kitchen = Kitchen.find(params[:id])
+    if @kitchen.destroy
+      flash[:success]="Kitchen deleted successfully!"
+      redirect_to :action => 'display'
+    end
+  end
+
   def show
     if session[:kitchen].nil?
     @counter = Counter.find(params[:counter][:counter_id])
