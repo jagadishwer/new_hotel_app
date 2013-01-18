@@ -7,20 +7,30 @@ class OrderlistsController < ApplicationController
   @id=params[:id]
   @price=params[:price]
  end
+# def create
+## @order=Orderlist.new(:counter_id=>session[:counter],:item_id=>params[:orderlist][:id],:quantity=>params[:orderlist][:quantity],:price=>params[:orderlist][:price])
+# @order=Orderlist.find_by_item_id(params[:id],:conditions=>{:counter_id=>session[:counter],:order_id=>nil})
+#   if @order.nil?
+#   @order=Orderlist.create(:counter_id=>session[:counter],:kitchen_id=>params[:kitchen_id],:item_id=>params[:id],:quantity=>params[:quantity],:price=>params[:price],:user_id=>current_user.id)
+#   else
+#     @order.update_attributes(:quantity=>@order.quantity+params[:quantity].to_i)
+#   end
+#   bakery_order if Counter.find(session[:counter]).name=='Bakery'
+#   redirect_to :controller=>'counters', :action=>'final_order'
+#  # if @order.save
+#
+#   #redirect_to :action=>:counter_items,:controller=>:counters
+# #else
+# #end
+# end
  def create
-# @order=Orderlist.new(:counter_id=>session[:counter],:item_id=>params[:orderlist][:id],:quantity=>params[:orderlist][:quantity],:price=>params[:orderlist][:price])
- @order=Orderlist.find_by_item_id(params[:id],:conditions=>{:counter_id=>session[:counter],:order_id=>nil})
-   if @order.nil?
-   @order=Orderlist.create(:counter_id=>session[:counter],:kitchen_id=>params[:kitchen_id],:item_id=>params[:id],:quantity=>params[:quantity],:price=>params[:price],:user_id=>current_user.id)
+   if Counter.find(session[:counter]).name=="Bakery"
+     puts "=================="
+    bakery_order
    else
-     @order.update_attributes(:quantity=>@order.quantity+params[:quantity].to_i)
+     indian_order
    end
    redirect_to :controller=>'counters', :action=>'final_order'
-  # if @order.save
-   
-   #redirect_to :action=>:counter_items,:controller=>:counters
- #else
- #end
  end
 
 def update
@@ -71,5 +81,22 @@ puts params.inspect
        ol.destroy
 
     redirect_to :controller=>'counters', :action=>'final_order'
+  end
+private
+  def bakery_order
+    @order=Orderlist.find_by_item_id(params[:id],:conditions=>{:counter_id=>session[:counter],:order_id=>nil})
+   if @order.nil?
+   @order=Orderlist.create(:status=>1,:counter_id=>session[:counter],:kitchen_id=>params[:kitchen_id],:item_id=>params[:id],:quantity=>params[:quantity],:price=>params[:price],:user_id=>current_user.id)
+   else
+     @order.update_attributes(:status=>1,:quantity=>@order.quantity+params[:quantity].to_i)
+   end
+  end
+  def indian_order
+    @order=Orderlist.find_by_item_id(params[:id],:conditions=>{:counter_id=>session[:counter],:order_id=>nil})
+   if @order.nil?
+   @order=Orderlist.create(:counter_id=>session[:counter],:kitchen_id=>params[:kitchen_id],:item_id=>params[:id],:quantity=>params[:quantity],:price=>params[:price],:user_id=>current_user.id)
+   else
+     @order.update_attributes(:quantity=>@order.quantity+params[:quantity].to_i)
+   end
   end
 end

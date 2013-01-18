@@ -115,6 +115,19 @@ class KitchensController < ApplicationController
     @kitchens=Kitchen.all
     #authorize! :write, Counter
   end
+  def bakery_request
+
+  end
+  def counter_request
+    @counter = Counter.find_by_name('bakery')
+    unless @counter.nil?
+    @counter_orders = CounterOrder.where(:status=>0,:counter_id=>@counter.id)
+    else
+       @counter_orders = []
+
+  end
+  render 'counter_requests' ,:layout=>false
+  end
   def stock
   end
 end

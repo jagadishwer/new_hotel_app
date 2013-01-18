@@ -51,13 +51,13 @@ background-color: white;
   <h1 style="text-align:left;color:whitesmoke;font-variant:small-caps;font-family:fantasy;margin-left:20px;">Dashboard</h1>
 </div>
 
-<div style="width:40%;height:800px; background-color:white;margin-bottom: 50px;float: left;margin-left:30px;overflow:scroll">
+<div style="width:40%;height:800px; background-color:rgb(252, 248, 227);margin-bottom: 50px;float: left;margin-left:30px;overflow:scroll;border-radius:20px;border:10px solid rgb(218, 235, 169);">
 
 
 
 
       <table class="table table-bordered">
-        <tr style="background-color:blanchedalmond; "> <td>SERIAL NO:</td> <td >COUNTER: </td><td>DATE</td><td>TOTAL</td>
+        <tr style="background-color: #387038;color: white; "> <td>SERIAL NO:</td> <td >COUNTER: </td><td>DATE</td><td>TOTAL</td>
           <%#*<td></td>%>
         </tr>
         <%@customers.each do |customer|%>
@@ -72,7 +72,7 @@ background-color: white;
         </tr>
       </table>
 </div>
-<div id="myDiv"style="width:50%;height:800px;background-color:white;float: left;margin-left:30px;overflow:scroll; ">
+<div id="myDiv"style="width:50%;height:800px;background-color:rgb(252, 248, 227);float: left;margin-left:30px;overflow:scroll;border-radius:20px;border:10px solid rgb(218, 235, 169); ">
   
 <%#*<div style="margin:50px 100px 50px 100px;">%>
 <%#=link_to_modal "Add Tables", {:controller=>'tables',:action=>'new'},:class=>'btn btn-warning'%>
@@ -85,7 +85,9 @@ background-color: white;
   <div>
   <%=form_for :sorting, :url=>"dashboard" do%>
   <div style ="margin-left: 30px; width:250px;margin-top: 10px;">
-    <h3>Last Transactions</h3>
+    <h1 style="text-align:left;color:#387038;font-variant:small-caps;font-weight:bolder; font-family:fantasy;margin:50px 100px"> Transactions:</h1>
+
+    
       <%= label_tag  'start Date'%>
       <%= text_field_tag 'sorting[start_date]',nil, :class => 'datepicker'%>
     

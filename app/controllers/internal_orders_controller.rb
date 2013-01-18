@@ -10,7 +10,7 @@ def create
     @stock_list_items = StockListItem.all
     @count=0
     @stock_list_items.each do |s|
-      io=InternalOrder.new(:stock_list_item_id=>s.id,:quantity=>params[s.name][:quantity],:user_id=>current_user.id,:counter_id=>session[:kitchen])
+      io=InternalOrder.new(:stock_list_item_id=>s.id,:quantity=>params[s.name][:quantity],:user_id=>current_user.id,:kitchen_id=>session[:kitchen])
      if io.save
       @count+=1
 

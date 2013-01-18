@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130118051244) do
+ActiveRecord::Schema.define(:version => 20130118100756) do
 
   create_table "abouts", :force => true do |t|
     t.string   "title"
@@ -126,6 +126,16 @@ ActiveRecord::Schema.define(:version => 20130118051244) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "counter_orders", :force => true do |t|
+    t.integer  "counter_id"
+    t.integer  "item_id"
+    t.integer  "quantity"
+    t.integer  "status"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "counters", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
@@ -191,7 +201,7 @@ ActiveRecord::Schema.define(:version => 20130118051244) do
   add_index "images", ["imagable_id"], :name => "index_images_on_imagable_id"
 
   create_table "internal_orders", :force => true do |t|
-    t.integer  "counter_id"
+    t.integer  "kitchen_id"
     t.integer  "stock_list_item_id"
     t.integer  "quantity"
     t.integer  "status"
