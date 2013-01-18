@@ -3,44 +3,56 @@ class OrderlistsController < ApplicationController
   authorize_resource
   def new
    
-  @orderlist=Orderlist.new()
-  @id=params[:id]
-  @price=params[:price]
- end
- def create
-# @order=Orderlist.new(:counter_id=>session[:counter],:item_id=>params[:orderlist][:id],:quantity=>params[:orderlist][:quantity],:price=>params[:orderlist][:price])
- @order=Orderlist.find_by_item_id(params[:id],:conditions=>{:counter_id=>session[:counter],:order_id=>nil})
-   if @order.nil?
-     @order=Orderlist.create(:counter_id=>session[:counter],:kitchen_id=>params[:kitchen_id],:item_id=>params[:id],:quantity=>params[:quantity],:price=>params[:price],:user_id=>current_user.id)
-   else
-     @order.update_attributes(:quantity=>@order.quantity+params[:quantity].to_i)
-   end
-   redirect_to :controller=>'counters', :action=>'final_order'
-  # if @order.save
-   
-   #redirect_to :action=>:counter_items,:controller=>:counters
- #else
- #end
- end
-
-def update
-  @ol=Orderlist.find(params[:id])
-  if params[:quantity] > 0 && params[:quantity].class.to_s == "Fixnum"
-    @ol.update_attributes(:quantity => params[:quantity])
-  else
-    flash[:error] = 'Invalid Quantity!'
+    @orderlist=Orderlist.new()
+    @id=params[:id]
+    @price=params[:price]
   end
-end
+  # def create
+  ## @order=Orderlist.new(:counter_id=>session[:counter],:item_id=>params[:orderlist][:id],:quantity=>params[:orderlist][:quantity],:price=>params[:orderlist][:price])
+  # @order=Orderlist.find_by_item_id(params[:id],:conditions=>{:counter_id=>session[:counter],:order_id=>nil})
+  #   if @order.nil?
+  #   @order=Orderlist.create(:counter_id=>session[:counter],:kitchen_id=>params[:kitchen_id],:item_id=>params[:id],:quantity=>params[:quantity],:price=>params[:price],:user_id=>current_user.id)
+  #   else
+  #     @order.update_attributes(:quantity=>@order.quantity+params[:quantity].to_i)
+  #   end
+  #   bakery_order if Counter.find(session[:counter]).name=='Bakery'
+  #   redirect_to :controller=>'counters', :action=>'final_order'
+  #  # if @order.save
+  #
+  #   #redirect_to :action=>:counter_items,:controller=>:counters
+  # #else
+  # #end
+  # end
+  def create
+
+    if Counter.find(session[:counter]).name=="Bakery"
+      puts "=================="
+      bakery_order
+
+    else
+      indian_order
+    end
+    redirect_to :controller=>'counters', :action=>'final_order'
+  end
+
+  def update
+    @ol=Orderlist.find(params[:id])
+    if params[:quantity] > 0 && params[:quantity].class.to_s == "Fixnum"
+      @ol.update_attributes(:quantity => params[:quantity])
+    else
+      flash[:error] = 'Invalid Quantity!'
+    end
+  end
 
 
 
 
 
-# load_and_authorize_resource
-def cancelrequest
+  # load_and_authorize_resource
+  def cancelrequest
 
-puts"=================="
-puts params.inspect
+    puts"=================="
+    puts params.inspect
     c=Customer.find_by_table_id(params[:table_id],:conditions=>{:status=>0})
     puts c.inspect
     c.orders.where(:status=>0).each do |o|
@@ -53,9 +65,9 @@ puts params.inspect
     end
     respond_to do|format|
 
-          format.html
-          format.json {render :json=> true}
-          format.xml{render :xml=>true}
+      format.html
+      format.json {render :json=> true}
+      format.xml{render :xml=>true}
        
           
     end
@@ -72,8 +84,25 @@ puts params.inspect
   end
   def cancel
     ol=Orderlist.find(params[:id])
-       ol.destroy
+    ol.destroy
 
     redirect_to :controller=>'counters', :action=>'final_order'
+  end
+  private
+  def bakery_order
+    @order=Orderlist.find_by_item_id(params[:id],:conditions=>{:counter_id=>session[:counter],:order_id=>nil})
+    if @order.nil?
+      @order=Orderlist.create(:status=>1,:counter_id=>session[:counter],:kitchen_id=>params[:kitchen_id],:item_id=>params[:id],:quantity=>params[:quantity],:price=>params[:price],:user_id=>current_user.id)
+    else
+      @order.update_attributes(:status=>1,:quantity=>@order.quantity+params[:quantity].to_i)
+    end
+  end
+  def indian_order
+    @order=Orderlist.find_by_item_id(params[:id],:conditions=>{:counter_id=>session[:counter],:order_id=>nil})
+    if @order.nil?
+      @order=Orderlist.create(:counter_id=>session[:counter],:kitchen_id=>params[:kitchen_id],:item_id=>params[:id],:quantity=>params[:quantity],:price=>params[:price],:user_id=>current_user.id)
+    else
+      @order.update_attributes(:quantity=>@order.quantity+params[:quantity].to_i)
+    end
   end
 end

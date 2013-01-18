@@ -90,7 +90,10 @@ class CountersController < ApplicationController
 
   end
 
-
+#def bakery_orders
+#   @counter= Counter.find_by_name('Bakery')
+#   @bakery_items=@counter.items
+#end
 
   def bakery
 
@@ -99,7 +102,7 @@ class CountersController < ApplicationController
     unless @counter.nil?
       session[:counter]=@counter.id
       @items = @counter.items
-      render 'order_counter'
+      render 'bakery'
     else
       flash[:error]="Opps! Page Not Found"
       redirect_to root_url
