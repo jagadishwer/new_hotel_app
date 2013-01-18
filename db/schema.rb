@@ -335,7 +335,7 @@ ActiveRecord::Schema.define(:version => 20130118051244) do
   create_table "transactions", :force => true do |t|
     t.integer  "swipe_card_id"
     t.string   "counter_id"
-    t.string   "cost"
+    t.float    "cost"
     t.integer  "type_of_transaction"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false

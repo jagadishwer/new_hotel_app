@@ -11,7 +11,7 @@ class OrderlistsController < ApplicationController
 # @order=Orderlist.new(:counter_id=>session[:counter],:item_id=>params[:orderlist][:id],:quantity=>params[:orderlist][:quantity],:price=>params[:orderlist][:price])
  @order=Orderlist.find_by_item_id(params[:id],:conditions=>{:counter_id=>session[:counter],:order_id=>nil})
    if @order.nil?
-   @order=Orderlist.create(:counter_id=>session[:counter],:kitchen_id=>params[:kitchen_id],:item_id=>params[:id],:quantity=>params[:quantity],:price=>params[:price],:user_id=>current_user.id)
+     @order=Orderlist.create(:counter_id=>session[:counter],:kitchen_id=>params[:kitchen_id],:item_id=>params[:id],:quantity=>params[:quantity],:price=>params[:price],:user_id=>current_user.id)
    else
      @order.update_attributes(:quantity=>@order.quantity+params[:quantity].to_i)
    end
@@ -25,7 +25,11 @@ class OrderlistsController < ApplicationController
 
 def update
   @ol=Orderlist.find(params[:id])
-  @ol.update_attributes(:quantity=>params[:quantity])
+  if params[:quantity] > 0 && params[:quantity].class.to_s == "Fixnum"
+    @ol.update_attributes(:quantity => params[:quantity])
+  else
+    flash[:error] = 'Invalid Quantity!'
+  end
 end
 
 
