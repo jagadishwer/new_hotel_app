@@ -14,4 +14,5 @@ class Kitchen < ActiveRecord::Base
   attr_accessible :counter_id, :description, :name
   validates :name, :presence => true, :uniqueness => true
   belongs_to :counter
+  has_many :items
 end

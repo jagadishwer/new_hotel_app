@@ -25,6 +25,7 @@ class Orderlist < ActiveRecord::Base
   #self.count ||= 15
 #    self.user_id ||= current_user.id
  self.cancel_item ||= false
+ self.status ||= 0
  end
 def itemname
   Item.find(self.item_id).item_name

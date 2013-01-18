@@ -10,7 +10,7 @@
       <div>
         <%= form_tag '/kitchens/show ' %>
         
-        <%= select :counter, :counter_id,@counters.collect {|c| [c.name, c.id]}, { :prompt => 'Select Kitchen' }%>
+        <%= select :kitchen, :kitchen_id,@kitchens.collect {|c| [c.name, c.id]}, { :prompt => 'Select Kitchen' }%>
         <%= submit_tag "Go!" %>
       </div>
                

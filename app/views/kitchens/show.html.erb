@@ -60,14 +60,15 @@
           <%if order.status==0%>
 
             <%if (300-(Time.now-order.created_at).round)>0%>
-
+<%@list=order.orderlists.where(:kitchen_id=>session[:kitchen],:status=>0)%>
+        <%unless @list.empty?%>
 
               <table class="table table-bordered">
                 <tr style="background-color:green; "> <td >  <%#=order.customer.table.table_name%></td><td><span class="badge badge-inverse"><%=(Time.at(Time.now-order.created_at)).utc.strftime("%H:%M:%S")%></span></td></tr>
 
                 <tr><td><table class="table table-bordered">
                       <tr style="background-color:#ffcccc"><td>Item </td>  <td> Quantity </td> </tr>
-                      <%order.orderlists.each do|x|%>
+                      <%@list.each do|x|%>
                         <%if x.cancel_item and (Time.now-x.updated_at)<60%>
                           <tr style="background-color:red;"><td><%=x.itemname%></td>  <td>  <%=x.quantity%>
 
@@ -88,14 +89,16 @@
               </table>
 
 
-
+<%end%>
             <%else%>
+        <%@list=order.orderlists.where(:kitchen_id=>session[:kitchen],:status=>0)%>
+        <%unless @list.empty?%>
               <table class="table table-bordered">
                 <tr style="background-color:red; "> <td >  <%#=order.customer.table.table_name%></td><td><span class="badge badge-inverse"><%=(Time.at(Time.now-order.created_at)).utc.strftime("%H:%M:%S")%></span></td></tr>
 
                 <tr><td><table class="table table-bordered">
                       <tr style="background-color:#ffcccc"><td>Item </td>  <td> Quantity </td> </tr>
-                      <%order.orderlists.each do|x|%>
+                      <%@list.each do|x|%>
                         <%if x.cancel_item and (Time.now-x.updated_at)<60%>
                           <tr style="background-color:red;"><td><%=x.itemname%></td>  <td>  <%=x.quantity%>
 
@@ -114,6 +117,7 @@
 
 
               </table>
+        <%end%>
             <%end%>
 
           <%end%>

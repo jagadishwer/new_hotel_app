@@ -32,8 +32,8 @@ class CountersController < ApplicationController
 
   end
   def other_counter
-    session[:counter]=nil
-    @counters=Counter.all
+#    session[:counter]=nil
+#    @counters=Counter.all
     #@counters.reject!{|x| ['main_counter','Cocktails'].include?x.name}
     
 
@@ -60,9 +60,33 @@ class CountersController < ApplicationController
 
   def indian
 
-  end
+
+    @counter= Counter.find_by_name('Indian')
+    unless @counter.nil?
+      session[:counter]=@counter.id
+      @items = @counter.items
+      render 'order_counter'
+    else
+      flash[:error]="Opps! Page Not Found"
+      redirect_to root_url
+
+    end
+
+ end
+
+ 
 
   def cocktail
+    @counter= Counter.find_by_name('Cocktails')
+    unless @counter.nil?
+      session[:counter]=@counter.id
+      @items = @counter.items
+      render 'order_counter'
+    else
+      flash[:error]="Opps! Page Not Found"
+      redirect_to root_url
+
+    end
 
   end
 
@@ -70,6 +94,17 @@ class CountersController < ApplicationController
 
   def bakery
 
+     @counter= Counter.find_by_name('Bakery')
+     #render :text=>@counter.id
+    unless @counter.nil?
+      session[:counter]=@counter.id
+      @items = @counter.items
+      render 'order_counter'
+    else
+      flash[:error]="Opps! Page Not Found"
+      redirect_to root_url
+
+    end
   end
 
 

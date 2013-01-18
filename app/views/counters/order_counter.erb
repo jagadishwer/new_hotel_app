@@ -196,7 +196,7 @@ xmlhttp1.open("GET","/swipeCards/swipe_card",true);
     xmlhttp.send();
 
   }
- function add_item(id,price)
+ function add_item(id,price,kitchen_id)
   {
 
   
@@ -223,7 +223,7 @@ quantity=$('#quantity').val();
       }
     }
 
-    xmlhttp.open("GET","/orderlists/create?id="+id+"&price="+price+"&quantity="+quantity,true);
+    xmlhttp.open("GET","/orderlists/create?id="+id+"&price="+price+"&quantity="+quantity+"&kitchen_id="+kitchen_id,true);
     xmlhttp.send();
 
   }
@@ -371,7 +371,7 @@ loadXMLDoc();
   <div class="row-fluid" style="margin-left:5px;">
 <% @items.each do |i| %>
    <div class="span3">
-     <button type="button"  class="thumbnail" style='margin-left: 2px;height:180px;width:180px;line-height: 40px;'onclick="add_item(<%=i.id%>,<%=i.price%>)">
+     <button type="button"  class="thumbnail" style='margin-left: 2px;height:180px;width:180px;line-height: 40px;'onclick="add_item(<%=i.id%>,<%=i.price%>,<%=i.kitchen_id%>)">
        <%=image_tag i.attachments.shuffle.first.image_url,:size=>'180x180'%>
      </button>
      <h4><%=  i.item_name %></h4>

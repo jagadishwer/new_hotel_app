@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130117055319) do
+ActiveRecord::Schema.define(:version => 20130118051244) do
 
   create_table "abouts", :force => true do |t|
     t.string   "title"
@@ -203,10 +203,10 @@ ActiveRecord::Schema.define(:version => 20130117055319) do
   create_table "items", :force => true do |t|
     t.string  "item_name"
     t.float   "price"
-    t.string  "category"
     t.text    "description"
     t.integer "category_id"
     t.integer "counter_id"
+    t.integer "kitchen_id"
   end
 
   create_table "kitchens", :force => true do |t|
@@ -227,6 +227,8 @@ ActiveRecord::Schema.define(:version => 20130117055319) do
     t.boolean  "cancel_item"
     t.integer  "counter_id"
     t.integer  "user_id"
+    t.integer  "kitchen_id"
+    t.integer  "status"
   end
 
   create_table "orders", :force => true do |t|
@@ -333,7 +335,7 @@ ActiveRecord::Schema.define(:version => 20130117055319) do
   create_table "transactions", :force => true do |t|
     t.integer  "swipe_card_id"
     t.string   "counter_id"
-    t.float    "cost"
+    t.string   "cost"
     t.integer  "type_of_transaction"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false

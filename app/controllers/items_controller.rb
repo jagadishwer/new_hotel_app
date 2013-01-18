@@ -12,6 +12,7 @@ class ItemsController < ApplicationController
  def create
   if request.post?
     @item=Item.new(params[:item])
+    @item.counter_id=Kitchen.find(params[:item][:kitchen_id]).counter_id
     respond_to do |format|
       if @item.save
         @i={:id=>@item.id}
@@ -36,6 +37,7 @@ class ItemsController < ApplicationController
 
  def update
   @item=Item.find(params[:item][:id])
+  
   @item.update_attributes(params[:item])
   redirect_to :action=>'show'
  end

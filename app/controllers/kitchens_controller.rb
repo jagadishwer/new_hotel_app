@@ -1,6 +1,6 @@
 class KitchensController < ApplicationController
   before_filter :kitchen_authorize
-  layout 'show'
+  layout 'show' , :except=>['display']
   #authorize_resource :class=>false
   def new
     @kitchen = Kitchen.new
@@ -35,32 +35,59 @@ class KitchensController < ApplicationController
     end
   end
 
+
   def show
     if session[:kitchen].nil?
-    @counter = Counter.find(params[:counter][:counter_id])
-    session[:kitchen]=params[:counter][:counter_id]
+      @kitchen = Kitchen.find(params[:kitchen][:kitchen_id])
+      session[:kitchen]=params[:kitchen][:kitchen_id]
     else
-      @counter=Counter.find( session[:kitchen])
+      @kitchen=Kitchen.find( session[:kitchen])
     end
+    @counter=@kitchen.counter
     @orders=@counter.orders.find(:all, :limit => 20,:conditions=>{:status=>0},:order=>'created_at DESC')
     #@orders=@counter.orders
     @orders=@orders.each_slice(10).to_a
-
   end
   def show_nolayout
-
-   if session[:kitchen].nil?
-    @counter = Counter.find(params[:counter][:counter_id])
-    session[:kitchen]=params[:counter][:counter_id]
+    if session[:kitchen].nil?
+      @kitchen = Kitchen.find(params[:kitchen][:kitchen_id])
+      session[:kitchen]=params[:kitchen][:kitchen_id]
     else
-      @counter=Counter.find( session[:kitchen])
+      @kitchen=Kitchen.find( session[:kitchen])
     end
+    @counter=@kitchen.counter
     @orders=@counter.orders.find(:all, :limit => 20,:conditions=>{:status=>0},:order=>'created_at DESC')
     #@orders=@counter.orders
     @orders=@orders.each_slice(10).to_a
-
     render 'show',:layout=>false
   end
+
+  #  def show
+  #    if session[:kitchen].nil?
+  #    @counter = Counter.find(params[:counter][:counter_id])
+  #    session[:kitchen]=params[:counter][:counter_id]
+  #    else
+  #      @counter=Counter.find( session[:kitchen])
+  #    end
+  #    @orders=@counter.orders.find(:all, :limit => 20,:conditions=>{:status=>0},:order=>'created_at DESC')
+  #    #@orders=@counter.orders
+  #    @orders=@orders.each_slice(10).to_a
+  #
+  #  end
+  #  def show_nolayout
+  #
+  #   if session[:kitchen].nil?
+  #    @counter = Counter.find(params[:counter][:counter_id])
+  #    session[:kitchen]=params[:counter][:counter_id]
+  #    else
+  #      @counter=Counter.find( session[:kitchen])
+  #    end
+  #    @orders=@counter.orders.find(:all, :limit => 20,:conditions=>{:status=>0},:order=>'created_at DESC')
+  #    #@orders=@counter.orders
+  #    @orders=@orders.each_slice(10).to_a
+  #
+  #    render 'show',:layout=>false
+  #  end
   def delivered
     puts "================================"
     p params.inspect
@@ -72,8 +99,9 @@ class KitchensController < ApplicationController
   end
   def kitchen
     session[:kitchen]=nil
-    @counters=Counter.where("name!='main_counter'")
-     #authorize! :write, Counter
+    #@counters=Counter.where("name!='main_counter'")
+    @kitchens=Kitchen.all
+    #authorize! :write, Counter
   end
   def stock
   end
