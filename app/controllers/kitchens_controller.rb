@@ -94,12 +94,19 @@ class KitchensController < ApplicationController
   #    render 'show',:layout=>false
   #  end
   def delivered
-    puts "================================"
-    p params.inspect
-    puts "================================"
+    #    puts "================================"
+    #    p params.inspect
+    #    puts "================================"
     @order=Order.find(params[:id])
-    @order.status=1
-    @order.save
+    @orderlist=@order.orderlists.where(:kitchen_id=>params[:kitchen_id],:status=>0)
+    @orderlist.each do |ol|
+      ol.status=1
+      ol.save
+    end
+    if ord.orderlists.count(:conditions=>{:status=>0})==0 then
+      @order.status=1
+      @order.save
+    end
     # redirect_to :action=>"show"
   end
   def kitchen

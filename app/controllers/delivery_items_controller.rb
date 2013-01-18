@@ -23,9 +23,11 @@ class DeliveryItemsController < ApplicationController
     if @count > 0
       @delivery.cost = @sum
       @delivery.save
+     redirect_to :controller=>'hotelsessions', :action=>'check_inventory'
     else
       flash[:error] = "Failed! Delivery Items list should not be empty."
       redirect_to :controller=>'delivery_items', :action => 'new'
     end
+
   end
 end

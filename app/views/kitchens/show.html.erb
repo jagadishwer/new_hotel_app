@@ -24,7 +24,7 @@
     setTimeout("loadXMLDoc()", 1000);
   }
   
-  function change_status(order)
+  function change_status(order,kitchen)
   {
     //alert(order);
 
@@ -33,7 +33,8 @@
       url: "delivered",
        
       data: {
-        'id' : order
+        'id' : order,
+        'kitchen_id' : kitchen
       }
         
     });
@@ -53,7 +54,7 @@
 
     <%@orders.each do |order_slice|%>
 
-      <div style="width: 600px; height:1200px; background-color:white;margin-bottom: 50px;float: left;margin-left:30px;">
+      <div style="width: 600px; height:1200px;margin-bottom: 50px;float: left;margin-left:30px;">
 
         <%order_slice.each do |order|%>
 
@@ -83,7 +84,7 @@
                         <%end%>
                       <%end%>
                     </table></td>
-                  <td><button type="button" class="btn-large btn-primary" style="width: 250px;height:100px; "onclick="change_status(<%=order.id%>)">deliverd</button></td> </tr>
+                  <td><button type="button" class="btn-large btn-primary" style="width: 250px;height:100px; "onclick="change_status(<%=order.id%>,<%=session[:kitchen]%>)">deliverd</button></td> </tr>
 
 
               </table>
@@ -113,7 +114,7 @@
                         <%end%>
                       <%end%>
                     </table></td>
-                  <td><button type="button" class="btn-large btn-info" style="width: 250px;height:100px; "onclick="change_status(<%=order.id%>)">deliverd</button></td> </tr>
+                  <td><button type="button" class="btn-large btn-info" style="width: 250px;height:100px; "onclick="change_status(<%=order.id%>,<%=session[:kitchen]%>)">deliverd</button></td> </tr>
 
 
               </table>
