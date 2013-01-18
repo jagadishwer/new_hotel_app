@@ -73,7 +73,7 @@ var sum = $('#sum').val();
 
       }
       else{
-        alert('swipe your card');
+        alert('Please! Swipe your card');
       }
 
   
@@ -165,7 +165,7 @@ $('#back').hide();
       }
     }
 //alert('ok');
-xmlhttp1.open("GET","/swipeCards/swipe_card",true);
+    xmlhttp1.open("GET","/swipeCards/swipe_card",true);
     xmlhttp1.send();
     xmlhttp.open("GET","/counters/final_order",true);
     xmlhttp.send();
@@ -328,10 +328,6 @@ loadXMLDoc();
   }
 
 </script>
-
-
-
-
 
 
 

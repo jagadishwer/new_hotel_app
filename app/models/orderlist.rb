@@ -16,10 +16,11 @@
 
 class Orderlist < ActiveRecord::Base
   # attr_accessible :title, :body
-   resourcify
+  resourcify
+  validates :quantity, :numericality => {:only_integer => true, :greater_than => 0}
   belongs_to :orders
   belongs_to :items
-    belongs_to :users
+  belongs_to :users
  after_initialize :init
  def init
   #self.count ||= 15
