@@ -12,8 +12,10 @@
 #
 
 class Item < ActiveRecord::Base
+
    resourcify
   attr_accessible :item_name, :price, :category_id,:counter_id, :description, :attachments_attributes,:kitchen_id
+
 
   #has_many :customers, :through=>:orders, :dependent=>:destroy
   has_many :orders, :through=>:orderlists

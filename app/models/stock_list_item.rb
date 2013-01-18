@@ -18,7 +18,6 @@ class StockListItem < ActiveRecord::Base
 #   has_many :suppliers, :through=>:supplies
 #   has_many :supplies
   has_many :remaining_items
-
   has_many :deliveries, :through=>:delivery_items
   has_many :delivery_items
   has_many :internal_orders
