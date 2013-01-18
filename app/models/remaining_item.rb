@@ -13,8 +13,8 @@
 #
 
 class RemainingItem < ActiveRecord::Base
-   resourcify
-   attr_accessible :stock_list_item_id, :mrp, :quantity, :user_id
+  resourcify
+  attr_accessible :stock_list_item_id, :mrp, :quantity, :user_id
   belongs_to :stock_count
   belongs_to :stock_list_item
   belongs_to :users

@@ -10,6 +10,8 @@ class KitchensController < ApplicationController
     if @kitchen.save
       flash[:success]="Kitchen created successfully!"
       redirect_to :controller => 'kitchens', :action => 'display'
+    else
+      render 'new'
     end
   end
   def display
@@ -24,13 +26,16 @@ class KitchensController < ApplicationController
       flash[:success]='Kitchen updated successfully!'
       redirect_to :action => 'display'
     else
-      render 'new'
+      render 'edit'
     end
   end
   def destroy
     @kitchen = Kitchen.find(params[:id])
     if @kitchen.destroy
       flash[:success]="Kitchen deleted successfully!"
+      redirect_to :action => 'display'
+    else
+      flash[:error]="Sorry! Unable to delete kitchen."
       redirect_to :action => 'display'
     end
   end

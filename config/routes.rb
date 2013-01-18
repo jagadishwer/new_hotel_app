@@ -1,5 +1,7 @@
 HotelApp::Application.routes.draw do
  
+  get "remaining_stocks/show"
+
   get "internal_orders/new"
 
   get "internal_orders/show"

@@ -26,7 +26,7 @@ padding-left: 40px;
 padding-right: 55px;
 font-size: 17.5px;
 border-radius: 5px 5px 5px 5px;
-line-height: 500px;
+line-height:   100px;
 margin-left: 20px;
 
 }
@@ -39,8 +39,8 @@ margin-left: 20px;
   height: 600px;
 }
 .edit_button{
-    width: 100px;
-    height: 50px;
+    width: 110px;
+    height: 40px;
     padding: 10px;
 }
 .update_button{
