@@ -49,7 +49,7 @@
 <%#=link_to_modal "edit", {:controller=>'items',:action=>'edit',:id=>s.id},:class=>"btn-small btn-primary"%>
 
   </tr>
-  <%@sum+=s.balance%>
+  <%@sum+=s.balance.to_f%>
 
 <%end%>
   <tr style="background-color:#ffcccc">

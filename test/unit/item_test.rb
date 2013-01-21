@@ -5,10 +5,10 @@
 #  id          :integer          not null, primary key
 #  item_name   :string(255)
 #  price       :float
-#  category    :string(255)
 #  description :text
 #  category_id :integer
 #  counter_id  :integer
+#  kitchen_id  :integer
 #
 
 require 'test_helper'

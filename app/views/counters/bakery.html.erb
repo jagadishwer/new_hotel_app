@@ -1,6 +1,6 @@
 <script>
 $(document).ready(function(){
-
+$('#request_counter').hide();
 
   $(':text').keypad({keypadOnly: false,
     layout: $.keypad.qwertyLayout});
@@ -118,18 +118,33 @@ function keyboard1()
     layout: $.keypad.qwertyLayout});
 }
 
-function edit_quantity(id)
+function edit_quantity(id,kitchen_id,item_id)
 {
-   $.ajax({
-      type: "GET",
-      url: "/orderlists/update",
+  if ($('#chquan').val()>0){
 
-      data: {
-        'id' : id,
-        'quantity': $('#chquan').val()
+  var xmlhttp;
+    if (window.XMLHttpRequest)
+    {// code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {// code for IE6, IE5
+      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      {
+        document.getElementById("myDiv1").innerHTML=xmlhttp.responseText;
       }
+    }
 
-    });
+    xmlhttp.open("GET","/orderlists/update?id="+id+"&item_id="+item_id+"&quantity="+$('#chquan').val()+"&kitchen_id="+kitchen_id,true);
+    xmlhttp.send();
+}else{
+    alert("Invalid Quantity!")
+  }
+
 
 }
 
@@ -155,6 +170,7 @@ $('#back').hide();
       if (xmlhttp.readyState==4 && xmlhttp.status==200)
       {
         document.getElementById("myDiv1").innerHTML=xmlhttp.responseText;
+        remain_bakery_items_list();
       }
     }
      xmlhttp1.onreadystatechange=function()
@@ -171,6 +187,10 @@ xmlhttp1.open("GET","/swipeCards/swipe_card",true);
     xmlhttp.send();
 
   }
+
+
+
+
    function cancel1(id)
   {
 
@@ -326,6 +346,60 @@ loadXMLDoc();
 
 //loadXMLDoc();
   }
+  function request_counter()
+  {
+    $('#request_counter').show();
+     var xmlhttp;
+    if (window.XMLHttpRequest)
+    {// code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {// code for IE6, IE5
+      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      {
+        document.getElementById("request_counter").innerHTML=xmlhttp.responseText;
+      }
+    }
+
+    xmlhttp.open("GET","/counter_orders/new",true);
+    xmlhttp.send();
+  }
+  function bakery_counter()
+  {
+    $('#request_counter').hide();
+  }
+
+  function remain_bakery_items_list()
+  {
+
+//alert('ok');
+    var xmlhttp;
+    if (window.XMLHttpRequest)
+    {// code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {// code for IE6, IE5
+      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      {
+        document.getElementById("remain_bakery_items").innerHTML=xmlhttp.responseText;
+      }
+    }
+//alert('ok');
+    xmlhttp.open("GET","/counters/remaining_bakery_items",true);
+    xmlhttp.send();
+
+  }
+
 
 </script>
 
@@ -361,7 +435,7 @@ loadXMLDoc();
 
 <div id="myDiv" style="width:100%;">
 <div style ="margin-left:30px;">
-  <h2><%= @counter.name %> Items <span style="margin-top: -20px;"> <%=link_to_modal "Request Item For counter", {:controller=>'counter_orders',:action=>'new'},:class=>"btn-large btn-primary"%></span>
+  <h2><%= @counter.name %> Items <span style="margin-top: -20px;">   <%=link_to "Bakery Counter","#",:class=>"btn-large btn-success",:onclick=>"bakery_counter()"%>  <%=link_to "Request Item For counter",'#',:class=>"btn-large btn-info",:onclick=>"request_counter()"%></span>
 </h2>
   
   
@@ -369,6 +443,8 @@ loadXMLDoc();
  
 </div>
 <div class ="main_div"style="width: 60%;height:800px;margin-bottom: 0px;margin-top: -10px;float: left;margin-left: 30px;overflow: scroll;border:1px solid black;padding: 1px;">
+   <div id="remain_bakery_items" style="width:30%;height:250px; background-color:yellow;margin-bottom: 0px;float: left;margin-left: 0px;color:black;overflow: scroll;border: 1px solid black;">
+</div>
   <div style="margin-left:80%;">
     <span style="width:50px;">Quantity</span>
       <%=text_field_tag "quantity",'1'%>
@@ -384,6 +460,11 @@ loadXMLDoc();
 <% end %>
   </div>
 </div>
+
+  <div id="request_counter" style="position:absolute;width: 60%;height:800px;margin-bottom: 0px;margin-top: -10px;float: left;margin-left: 30px;overflow: scroll;border:1px solid black;padding: 1px;padding-top: 50px;background-color:#49afcd">
+
+  </div>
+ 
 <div id="myDiv1" style="width:30%;height:400px; background-color:white;margin-bottom: 0px;float: left;margin-left: 0px;overflow: scroll;">
 </div>
   <div style="width: 30%;margin-bottom: 0px;float: left;margin-left: 0px;">

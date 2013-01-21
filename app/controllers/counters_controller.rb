@@ -109,6 +109,13 @@ class CountersController < ApplicationController
 
     end
   end
+  def remaining_bakery_items
+    @kitchen= Kitchen.find_by_name('Bakery')
+    unless @kitchen.nil?
+      @items= @kitchen.items
+    end
+    render :layout=>false
+  end
 
 
 

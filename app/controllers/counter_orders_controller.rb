@@ -3,6 +3,7 @@ class CounterOrdersController < ApplicationController
 
  @counter= Counter.find_by_name('Bakery')
  @items=@counter.items
+ render :layout=>false
   end
   def create
 
@@ -21,7 +22,8 @@ class CounterOrdersController < ApplicationController
     end
 
  flash[:notice]="Order for #{@count} item placed"
-       redirect_to :action=>'new' , :controller=>'counter_orders'
+# render 'new'
+       redirect_to :action=>'bakery' , :controller=>'counters'
 
   end
 

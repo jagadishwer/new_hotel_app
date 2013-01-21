@@ -21,7 +21,7 @@ class SwipeCard < ActiveRecord::Base
     #self.user_id ||= current_user
     #self.cancel_item ||= false
   #end
-  validates :card_no, :uniqueness => true
+  validates :card_no, :uniqueness => true, :presence=>true
 
 
 def self.search(search)

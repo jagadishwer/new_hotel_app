@@ -12,6 +12,8 @@
 #  cancel_item :boolean
 #  counter_id  :integer
 #  user_id     :integer
+#  kitchen_id  :integer
+#  status      :integer
 #
 
 class Orderlist < ActiveRecord::Base

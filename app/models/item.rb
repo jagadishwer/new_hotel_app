@@ -5,10 +5,10 @@
 #  id          :integer          not null, primary key
 #  item_name   :string(255)
 #  price       :float
-#  category    :string(255)
 #  description :text
 #  category_id :integer
 #  counter_id  :integer
+#  kitchen_id  :integer
 #
 
 class Item < ActiveRecord::Base
@@ -21,6 +21,7 @@ class Item < ActiveRecord::Base
   has_many :orders, :through=>:orderlists
   belongs_to :category
   has_many :orderlists
+  has_many :counter_orders
   has_many :attachments, :as => :attachable, :dependent => :destroy
   accepts_nested_attributes_for :attachments, :allow_destroy => true
   belongs_to :counter
