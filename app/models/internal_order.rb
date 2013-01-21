@@ -16,8 +16,8 @@ class InternalOrder < ActiveRecord::Base
   # attr_accessible :title, :body
  
  validates :quantity, :presence=> true
- belongs_to :stock_list_items
- belongs_to :counters
+ belongs_to :stock_list_item
+ belongs_to :kitchen
  after_initialize :init
  def init
    self.status||=0
@@ -25,7 +25,7 @@ class InternalOrder < ActiveRecord::Base
  def item_name
     StockListItem.find(self.stock_list_item_id).name
  end
- def counter_name
-   Counter.find(self.counter_id).name
+ def kitchen_name
+   Kitchen.find(self.kitchen_id).name
  end
 end

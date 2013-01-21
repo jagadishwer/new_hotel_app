@@ -15,4 +15,5 @@ class Kitchen < ActiveRecord::Base
   validates :name, :presence => true, :uniqueness => true
   belongs_to :counter
   has_many :items
+  has_many :internal_orders
 end
