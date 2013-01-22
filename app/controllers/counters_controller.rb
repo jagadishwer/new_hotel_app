@@ -1,6 +1,7 @@
 class CountersController < ApplicationController
   before_filter :authenticate_user!
   layout 'show' ,:except=>["counters"]
+  layout 'print_layout', :only=>["reciept"]
   authorize_resource
   before_filter :counter_authorize
   def new
@@ -127,7 +128,8 @@ class CountersController < ApplicationController
   def final_order
     #render :text=>"ok"
      @order_lists=Orderlist.find(:all,:conditions=>{:counter_id=>session[:counter],:order_id=>nil})
-     @tax=Tax.sum(:percentage)/100
+     @total_tax=Tax.sum(:percentage)/100
+     @tax=Tax.all
      render :layout => false
   end
 #  def confirm_order
@@ -137,6 +139,22 @@ class CountersController < ApplicationController
 #  end
   
   def counters
+
+  end
+  def check_order_status
+    @customers = Customer.search(params[:search])
+    render :layout=>false
+  end
+  def reciept
+   @orderlist=Orderlist.find(:last, :conditions=>{:user_id=>current_user.id})
+   unless @orderlist.nil?
+    
+   @order = @orderlist.order
+   unless @order.nil?
+   @customer=@order.customer
+   end
+   end
+   @tax=Tax.all
 
   end
 

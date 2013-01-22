@@ -22,7 +22,7 @@ belongs_to :customer
 belongs_to :counter
 #belongs_to :item
 has_many :items, :through=>:orderlists, :dependent=>:destroy
-has_many :orderlists, :dependent=>:destroy
+has_many :orderlists
  after_initialize :init
   def init
     #self.count ||= 15

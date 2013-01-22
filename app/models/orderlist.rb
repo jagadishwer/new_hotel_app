@@ -20,9 +20,9 @@ class Orderlist < ActiveRecord::Base
   # attr_accessible :title, :body
   resourcify
   validates :quantity, :numericality => {:only_integer => true, :greater_than => 0}
-  belongs_to :orders
-  belongs_to :items
-  belongs_to :users
+  belongs_to :order
+  belongs_to :item
+  belongs_to :user
  after_initialize :init
  def init
   #self.count ||= 15
@@ -32,5 +32,13 @@ class Orderlist < ActiveRecord::Base
  end
 def itemname
   Item.find(self.item_id).item_name
+end
+def status_info
+  case self.status
+  when 0
+    "Order under Process"
+  when 1
+    "Delivered from kitchen"
+  end
 end
 end

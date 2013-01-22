@@ -17,7 +17,7 @@
 
 class Customer < ActiveRecord::Base
   # attr_accessible :title, :body
-   resourcify
+  resourcify
   belongs_to :table
   belongs_to :counter
   #has_many :items, :through=>:orders, :dependent=>:destroy
@@ -29,9 +29,16 @@ class Customer < ActiveRecord::Base
     self.status ||= 0
   end
 
+  def self.search(search)
+    if search
+      where('serial_no LIKE ?', "%#{search.to_i}%")
+    else
+      []
+    end
+  end
   private
-   def generate_serial_no_and_date_of_transcation
-     self.serial_no = (Time.now).to_i
-     self.date_of_transcation = Date.today
-   end
+  def generate_serial_no_and_date_of_transcation
+    self.serial_no = (Time.now).to_i
+    self.date_of_transcation = Date.today
+  end
 end

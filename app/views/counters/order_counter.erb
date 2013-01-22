@@ -1,7 +1,8 @@
+<%= javascript_include_tag "jquery.printPage.js" %>
 <script>
 $(document).ready(function(){
-
- 
+$(".thumbnail.btn.btn-success").printPage();
+ $('#search_tab').hide();
   $(':text').keypad({keypadOnly: false,
     layout: $.keypad.qwertyLayout});
   
@@ -74,6 +75,7 @@ var sum = $('#sum').val();
       }
       else{
         alert('Please! Swipe your card');
+        return false;
       }
 
   
@@ -328,6 +330,43 @@ loadXMLDoc();
 //loadXMLDoc();
   }
 
+
+
+
+
+  function check_order_status()
+   {
+     $('#search_tab').show();
+     
+   }
+   function search()
+  {
+    $('#search_tab').show();
+     var xmlhttp;
+    if (window.XMLHttpRequest)
+    {// code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {// code for IE6, IE5
+      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      {
+        document.getElementById("search_result").innerHTML=xmlhttp.responseText;
+      }
+    }
+
+    xmlhttp.open("GET","/counters/check_order_status?search="+$('#search').val(),true);
+    xmlhttp.send();
+  }
+  function counter()
+  {
+   
+    $('#search_tab').hide();
+  }
 </script>
 
 
@@ -358,7 +397,9 @@ loadXMLDoc();
 
 <div id="myDiv" style="width:100%;">
 <div style ="margin-left:30px;">
-  <h2><%= @counter.name %> Items</h2>
+  <h2><%= @counter.name %><span style="margin-top: -20px;">   <%=link_to "#{@counter.name}Counter","#",:class=>"btn-large btn-success",:onclick=>"counter()"%>
+
+<%=link_to "Check Order Status",'#',:class=>"btn-large btn-info",:onclick=>"check_order_status()"%></span></h2>
 </div>
 <div class ="main_div"style="width: 60%;height:800px;margin-bottom: 0px;margin-top: -10px;float: left;margin-left: 30px;overflow: scroll;border:1px solid black;padding: 1px;">
   <div style="margin-left:80%;">
@@ -376,6 +417,16 @@ loadXMLDoc();
 <% end %>
   </div>
 </div>
+  <div id="search_tab" style="position:absolute;width: 60%;height:800px;margin-bottom: 0px;margin-top: -10px;float: left;margin-left: 30px;overflow: scroll;border:1px solid black;padding: 1px;padding-top: 50px;background-color:#49afcd">
+<div class="form-search">
+
+    <div class="input-append">
+    <%= text_field_tag :search, "",:class=>"span2 search-query",:style=>"height: 30px;width: 200px;" %>
+    <%= submit_tag "Search", :name => nil,:class=>"btn",:onclick=>"search()" %>
+    </div>
+</div>
+    <div id="search_result"></div>
+  </div>
   
 <div id="myDiv1" style="width:30%;height:400px; background-color:white;margin-bottom: 0px;float: left;margin-left: 0px;overflow: scroll;">
 </div>
@@ -383,9 +434,11 @@ loadXMLDoc();
     <button type="button"  id="back" class="btn" onclick="loadXMLDoc()">Back</button>
     <div id="swipecard" style='height: 150px; background-color:yellow;line-height: 50px;border: 1px solid;'>
     </div>
-   <%=link_to "Confirm Order", '#',:id=>'swipe',:class=>'thumbnail btn btn-success', :style=>'height: 50px;
+   <%=link_to "Confirm Order",{:action=>'reciept',:controller=>"counters"} ,:id=>'swipe',:class=>'thumbnail btn btn-success', :style=>'height: 50px;
 line-height: 50px;'%>
   <%=link_to "Cancel Order", "#",:id=>'cancel',:class=>'thumbnail btn btn-danger', :style=>'height: 50px;
+line-height: 50px;'%>
+    <%=link_to "Print Last Reciept",{:action=>'reciept',:controller=>"counters"} ,:class=>'thumbnail btn btn-success', :style=>'height: 50px;
 line-height: 50px;'%>
     <%#=link_to_modal "adjust", '#',:class=>'thumbnail btn btn-success', :style=>'height: 50px;line-height: 50px;'%>
   <%#=link_to "print", {:action=>'receipt',:id=>customer.id}, :class=>"btn btn-warning" %>

@@ -18,17 +18,17 @@ before_filter :authenticate_user!
       @card.save
    
    @order_lists=Orderlist.find(:all,:conditions=>{:counter_id=>session[:counter],:order_id=>nil})
-   @order= Order.new(:status=>0,:counter_id=>session[:counter])
+   @order= Order.new(:status=>0,:counter_id=>session[:counter],:total=>params[:total])
    @sum=0
    @order_lists.each do |ol|
      @order.orderlists<<ol
-     @sum+=ol.quantity*ol.price
+     
    end
-   @order.total=@sum
+   
    if @order.save
-     c=Customer.create(:counter_id=>session[:counter],:total=>@sum,:status=>2)
+     c=Customer.create(:counter_id=>session[:counter],:total=>params[:total],:status=>2)
      c.orders<<@order
-     Transaction.create(:counter_id=>session[:counter],:cost=>@sum,:swipe_card_id=>@card.id,:type_of_transaction=>2,:balance=>@card.balance)
+     Transaction.create(:counter_id=>session[:counter],:cost=>params[:total],:swipe_card_id=>@card.id,:type_of_transaction=>2,:balance=>@card.balance)
 session[:card]=nil
          render :text=>"Transaction Was Successful"
    end
