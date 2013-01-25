@@ -4,7 +4,7 @@
 <%@items.each do |i|%>
 
    <tr>
-     <td><%=i.item_name%>: </td><td><%=i.counter_orders.sum(:quantity)-i.orderlists.sum(:quantity)%></td>
+     <td><%=i.item_name%>: </td><td><%=i.counter_orders.sum(:quantity,:conditions=>{:status=>1})-i.orderlists.sum(:quantity)%></td>
    </tr>
 
 

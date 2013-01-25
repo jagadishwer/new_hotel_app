@@ -17,6 +17,7 @@ gem 'googlecharts'
 gem 'pdfkit', "~> 0.5.2"
 #gem 'wkhtmltopdf'
 gem "wkhtmltopdf-binary", "~> 0.9.5.3"
+#gem "wkhtmltopdf", :git=> 'https://github.com/jdpace/PDFKit/wiki/Installing-WKHTMLTOPDF'
 gem "nested_form"
 gem 'carrierwave'
 gem 'cancan'

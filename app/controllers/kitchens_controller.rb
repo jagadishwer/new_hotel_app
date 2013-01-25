@@ -119,7 +119,7 @@ class KitchensController < ApplicationController
 
   end
   def counter_request
-    @counter = Counter.find_by_name('bakery')
+    @counter = Counter.find_by_name('Bakery')
     unless @counter.nil?
     @counter_orders = CounterOrder.where(:status=>0,:counter_id=>@counter.id)
     else

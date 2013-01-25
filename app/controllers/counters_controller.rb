@@ -1,7 +1,7 @@
 class CountersController < ApplicationController
   before_filter :authenticate_user!
-  layout 'show' ,:except=>["counters"]
-  layout 'print_layout', :only=>["reciept"]
+  layout 'show' ,:except=>["counters","reciept"]
+  
   authorize_resource
   before_filter :counter_authorize
   def new
@@ -155,7 +155,7 @@ class CountersController < ApplicationController
    end
    end
    @tax=Tax.all
-
+render :layout=> 'print_layout'
   end
 
 end

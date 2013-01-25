@@ -124,7 +124,7 @@ end
   def update_bakery_items
    
     
-    if (CounterOrder.sum(:quantity,:conditions=>{:item_id=>params[:item_id].to_i})- Orderlist.sum(:quantity,:conditions=>{:item_id=>params[:item_id].to_i,:order_id=>!nil}))>= params[:quantity].to_i
+    if (CounterOrder.sum(:quantity,:conditions=>{:item_id=>params[:item_id].to_i,:status=>1})+Orderlist.sum(:quantity,:conditions=>{:item_id=>params[:item_id].to_i,:order_id=>nil})-Orderlist.sum(:quantity,:conditions=>{:item_id=>params[:item_id].to_i}))>= params[:quantity].to_i
 
       @ol=Orderlist.find(params[:id])
       if params[:quantity].to_i > 0

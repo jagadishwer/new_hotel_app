@@ -140,6 +140,7 @@ function edit_quantity(id,kitchen_id,item_id)
       if (xmlhttp.readyState==4 && xmlhttp.status==200)
       {
         document.getElementById("myDiv1").innerHTML=xmlhttp.responseText;
+        remain_bakery_items_list();
       }
     }
 
